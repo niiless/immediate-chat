@@ -10,10 +10,13 @@
   },
   "dependencies": {
     "@types/node": "^20.8.9",
+    "amfe-flexible": "^2.2.1",
     "ant-design-vue": "^4.0.6",
+    "dayjs": "^1.11.10",
     "less": "^4.2.0",
     "postcss": "^8.4.31",
     "postcss-px-to-viewport": "^1.1.1",
+    "postcss-pxtorem": "^5.1.1",
     "vue": "^3.3.4",
     "vue-router": "^4.2.5"
   },

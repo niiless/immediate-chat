@@ -1,6 +1,6 @@
 :root {
- padding: 0;
- margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 a {
@@ -13,6 +13,7 @@ a:hover {
 }
 
 body {
+  font-size: 192px;
   margin: 0;
 }
 
@@ -45,7 +46,6 @@ button:focus-visible {
 }
 
 #app {
-
 }
 
 @media (prefers-color-scheme: light) {
