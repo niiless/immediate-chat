@@ -1,28 +1,115 @@
 <script setup lang="ts">
 import { PlusOutlined, SearchOutlined } from "@ant-design/icons-vue";
 import { ref, reactive } from "vue";
-import dayJs from 'dayjs'
+import dayJs from "dayjs";
 // 搜索框
 const search = ref("");
 // 好友列表
 const friendList = ref([
-	{ id: 1, name: "小明", content: [{date:'2023年10月30日 10:38',msgList:[{type:'send',msg:'你好，有什么可以帮你的吗？'}]},{date:'2023年10月30日 10:52',msg:[{type:'send',msg:'好的'},{type:'recive',msg:'嗯嗯'}]}], avatar: "/src/assets/image/avator1.png", lastMsg: {date:'昨天',msg:'嗯嗯'} },
-	{ id: 3, name: "小明", content: [{date:'2023年10月30日 10:38',msgList:[{type:'send',msg:'你好，有什么可以帮你的吗？'}]},{date:'2023年10月30日 10:52',msg:[{type:'send',msg:'好的'},{type:'recive',msg:'嗯嗯'}]}],  avatar: "/src/assets/image/avator2.png",lastMsg:  {date:'昨天',msg:'嗯嗯'} },
-	{ id: 4, name: "小明", content: [{date:'2023年10月30日 10:38',msgList:[{type:'send',msg:'你好，有什么可以帮你的吗？'}]},{date:'2023年10月30日 10:52',msg:[{type:'send',msg:'好的'},{type:'recive',msg:'嗯嗯'}]}], avatar: "/src/assets/image/avator4.png", lastMsg:  {date:'昨天',msg:'嗯嗯'} },
-	{ id: 2, name: "小明", content: [{date:'2023年10月30日 10:38',msgList:[{type:'send',msg:'你好，有什么可以帮你的吗？'}]},{date:'2023年10月30日 10:52',msg:[{type:'send',msg:'好的'},{type:'recive',msg:'嗯嗯'}]}], avatar: "/src/assets/image/avator3.png", lastMsg:  {date:'昨天',msg:'嗯嗯'} },
-	{ id: 5, name: "小明", content: [{date:'2023年10月30日 10:38',msgList:[{type:'send',msg:'你好，有什么可以帮你的吗？'}]},{date:'2023年10月30日 10:52',msg:[{type:'send',msg:'好的'},{type:'recive',msg:'嗯嗯'}]}], avatar: "/src/assets/image/avator5.png", lastMsg:  {date:'昨天',msg:'嗯嗯'} },
+	{
+		id: 1,
+		name: "小明",
+		content: [
+			{
+				date: "2023年10月30日 10:38",
+				msgList: [
+					{ type: "send", msg: "你好，有什么可以帮你的吗？" },
+					{ type: "recive", msg: "没有了，谢谢" },
+				],
+			},
+			{
+				date: "2023年10月30日 10:52",
+				msgList: [
+					{ type: "send", msg: "好的" },
+					{ type: "recive", msg: "嗯嗯" },
+				],
+			},
+		],
+		avatar: "/src/assets/image/avator1.png",
+		lastMsg: { date: "昨天", msg: "嗯嗯" },
+	},
+	{
+		id: 3,
+		name: "小明",
+		content: [
+			{
+				date: "2023年10月30日 10:38",
+				msgList: [
+					{ type: "send", msg: "你好，有什么可以帮你的吗？" },
+					{ type: "recive", msg: "没有了，谢谢" },
+				],
+			},
+			{
+				date: "2023年10月30日 10:52",
+				msgList: [
+					{ type: "send", msg: "好的" },
+					{ type: "recive", msg: "嗯嗯" },
+				],
+			},
+		],
+		avatar: "/src/assets/image/avator2.png",
+		lastMsg: { date: "昨天", msg: "嗯嗯" },
+	},
+	{
+		id: 4,
+		name: "小明",
+		content: [
+			{ date: "2023年10月30日 10:38", msgList: [{ type: "send", msg: "你好，有什么可以帮你的吗？" }] },
+			{
+				date: "2023年10月30日 10:52",
+				msgList: [
+					{ type: "send", msg: "好的" },
+					{ type: "recive", msg: "嗯嗯" },
+				],
+			},
+		],
+		avatar: "/src/assets/image/avator4.png",
+		lastMsg: { date: "昨天", msg: "嗯嗯" },
+	},
+	{
+		id: 2,
+		name: "小明",
+		content: [
+			{ date: "2023年10月30日 10:38", msgList: [{ type: "send", msg: "你好，有什么可以帮你的吗？" }] },
+			{
+				date: "2023年10月30日 10:52",
+				msgList: [
+					{ type: "send", msg: "好的" },
+					{ type: "recive", msg: "嗯嗯" },
+				],
+			},
+		],
+		avatar: "/src/assets/image/avator3.png",
+		lastMsg: { date: "昨天", msg: "嗯嗯" },
+	},
+	{
+		id: 5,
+		name: "小明",
+		content: [
+			{ date: "2023年10月30日 10:38", msgList: [{ type: "send", msg: "你好，有什么可以帮你的吗？" }] },
+			{
+				date: "2023年10月30日 10:52",
+				msgList: [
+					{ type: "send", msg: "好的" },
+					{ type: "recive", msg: "嗯嗯" },
+				],
+			},
+		],
+		avatar: "/src/assets/image/avator5.png",
+		lastMsg: { date: "昨天", msg: "嗯嗯" },
+	},
 ]);
 // 当前聊天好友
-let activeItem = reactive({id: 0, name: "", content:[], avatar:'' });
+let activeItem = reactive({ id: 0, name: "", content: [], avatar: "" });
 // 选择好友
 function handleClickFriend(user: any) {
-	activeItem.id = user.id
-	activeItem.name = user.name
-	activeItem.content = user.content
-	activeItem.avatar = user.avatar
+	activeItem.id = user.id;
+	activeItem.name = user.name;
+	activeItem.content = user.content;
+	activeItem.avatar = user.avatar;
 }
 // 发送时间
-const sendTime = ref(dayJs().format('YYYY年MM月DD日 HH:mm:ss'))
+const sendTime = ref(dayJs().format("YYYY年MM月DD日 HH:mm:ss"));
 </script>
 <template>
 	<div class="chat-box">
@@ -46,62 +133,91 @@ const sendTime = ref(dayJs().format('YYYY年MM月DD日 HH:mm:ss'))
 				</div>
 			</div>
 		</div>
-		<div class="content">
+		<div class="content" v-show="activeItem.id">
 			<div class="content-header">
 				<div class="friend-name">
 					{{ activeItem.name }}
 				</div>
 				<div class="edit-btn">
-					<div class="top-land">
-						
-					</div>
+					<div class="top-land"></div>
 				</div>
 			</div>
 			<div class="chat-content">
 				<div class="chat-msg-item" v-for="(item, index) in activeItem.content" :key="index">
-					<div class="msg-date">{{ item.date  }}</div>
+					<div class="msg-date">{{ item.date }}</div>
 					<!-- 好友发送信息样式 此处div作为消息内容父盒子，用户v-if判断-->
 					<div v-for="msgs in item.msgList" :key="msgs">
-					<div v-if="msgs.type == 'send'">
-					<div class="msg-content">
-						<div class="chat-avatar">
-							<img :src="activeItem.avatar" alt="">
+						<div v-if="msgs.type == 'send'">
+							<div class="msg-content">
+								<div class="chat-avatar">
+									<img :src="activeItem.avatar" alt="" />
+								</div>
+								<div class="chat-msg-box">
+									<div class="item">{{ msgs.msg }}</div>
+								</div>
+							</div>
 						</div>
-						<div class="chat-msg-box">
-							<div class="item">{{ msgs.msg }}</div>
-						</div>
-					</div>
-					</div>
-					<!-- 用户发送消息框样式 此处div作为消息内容父盒子，用户v-if判断-->
-					<div v-if="msgs.type == 'recive'"> 
-					<div class="msg-content my-msg">
-						<div class="chat-msg-box">
-							<div class="my-item">{{ msgs.msg}}</div>
-						</div>
-						<div class="chat-avatar">
-							<img :src="activeItem.avatar" alt="">
+						<!-- 用户发送消息框样式 此处div作为消息内容父盒子，用户v-if判断-->
+						<div v-if="msgs.type == 'recive'">
+							<div class="msg-content my-msg">
+								<div class="chat-msg-box">
+									<div class="my-item">{{ msgs.msg }}</div>
+								</div>
+								<div class="chat-avatar">
+									<img :src="activeItem.avatar" alt="" />
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
+			</div>
+			<div class="edit-content">
+				<div class="edit-module">
+					<div class="left-module">
+						<div class="module-box">
+							<img src="/src/assets/chat-icon/emoji-normal.png" alt="" />
+						</div>
+						<div class="module-box">
+							<img src="/src/assets/chat-icon/file-normal.png" alt="" />
+						</div>
+						<div class="module-box">
+							<img src="/src/assets/chat-icon/slice-normal.png" alt="" />
+						</div>
+						<div class="module-box">
+							<img src="/src/assets/chat-icon/record-noraml.png" alt="" />
+						</div>
+					</div>
+					<div class="right-module">
+						<div class="module-box">
+							<img src="/src/assets/chat-icon/phone-normal.png" alt="" />
+						</div>
+						<div class="module-box">
+							<img src="/src/assets/chat-icon/video-active.png" alt="" />
+						</div>
+					</div>
+				</div>
+				<div class="edit-msg"></div>
+				<div class="send-btn-box finger">
+					<div></div>
+					<div class="send-btn finger" @click="handleSendMsg">发送(S)</div>
 				</div>
 			</div>
-			</div>
-			<div class="edit-content"></div>
 		</div>
 	</div>
 </template>
 
 <style lang="less" scoped>
 // 由于设计稿是1920 * 1080，比例为16：9 浏览器实际视图宽高比的影响，为尽量还原设计稿
-// 将设计稿的尺寸缩放0.789倍 
+// 将设计稿的尺寸缩放0.789倍
 .chat-box {
 	display: flex;
-	width: 1840px;
+	width: 1856px;
 	height: 100vh;
-	margin-left: 80px;
+	margin-left: 64px;
+	background-color: #f5f5f5;
 }
 .left-box {
-	width: 285px; // 365
+	width: 286px; // 362
 	height: 100vh;
 	background-color: #eae7e6;
 	border-right: 1px solid #d6d6d6;
@@ -111,8 +227,8 @@ const sendTime = ref(dayJs().format('YYYY年MM月DD日 HH:mm:ss'))
 		align-items: center;
 		width: 100%;
 		height: 75px;
-		background-color: #F7F7F7;
-		border-bottom:1px solid #d6d6d6;
+		background-color: #f7f7f7;
+		border-bottom: 1px solid #d6d6d6;
 		.add-btn {
 			width: 28px; //35
 			height: 28px;
@@ -124,7 +240,7 @@ const sendTime = ref(dayJs().format('YYYY年MM月DD日 HH:mm:ss'))
 		.chat-item {
 			display: flex;
 			align-items: center;
-			width: 285px; //362
+			width: 286px; //362
 			height: 75px;
 			img {
 				width: 46px;
@@ -132,7 +248,7 @@ const sendTime = ref(dayJs().format('YYYY年MM月DD日 HH:mm:ss'))
 				border-radius: 4px;
 				margin-left: 13px;
 			}
-			.info {	
+			.info {
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
@@ -158,62 +274,66 @@ const sendTime = ref(dayJs().format('YYYY年MM月DD日 HH:mm:ss'))
 	}
 }
 .content {
-	width: 1554px;
+	flex: 1;
+	// width: 1580px;
 	height: 100vh;
-	background-color: #f5f5f5;
+	// background-color: #f5f5f5;
 	.content-header {
 		display: flex;
 		align-items: center;
 		width: 100%;
 		height: 75px;
-		padding-left: 37px;
+		padding-left: 29px;
 		border-bottom: 1px solid #d6d6d6;
 		background-color: #f5f5f5;
 		font-size: 22px;
 		font-weight: 400;
 	}
-	.chat-msg-item{
+	.chat-msg-item {
 		position: relative;
 		width: 100%;
 		min-height: 122px;
 		overflow: hidden;
-		padding: 20px 35px;	
-		.msg-date{
-			width: 170px;
+		padding: 0 35px;
+		padding-top: 20px;
+		.msg-date {
+			width: 150px;
 			height: 22px;
 			margin: 0 auto;
 			margin-bottom: 18px;
-			background: #DADADA;
+			background: #dadada;
 			border-radius: 3px;
 			line-height: 22px;
 			padding: 0 6px;
 			font-size: 13px;
 		}
-		
-		.msg-content,.my-msg{
+
+		.msg-content,
+		.my-msg {
 			display: flex;
 			align-items: center;
 			padding: 8px 0;
-			.chat-avatar{
+			.chat-avatar {
 				width: 38px;
 				height: 38px;
 				border-radius: 3px;
-				img{
+				img {
 					width: 100%;
 				}
 			}
-			.chat-msg-box{
-			margin-left: 10px;
-			.item,.my-item{
-				position: relative;
-				max-width: 590px;
-				background: #fff;
-				border-radius: 6px;
-				font-size: 14px;
-				padding: 9px;
-			}
-			.item::after{
-					content: ' ';
+			.chat-msg-box {
+				margin-left: 10px;
+				.item,
+				.my-item {
+					position: relative;
+					max-width: 590px;
+					background: #fff;
+					border-radius: 6px;
+					font-size: 14px;
+					padding: 9px;
+				}
+				.item::after {
+					content: " ";
 					position: absolute;
 					width: 8px;
 					height: 8px;
@@ -224,33 +344,82 @@ const sendTime = ref(dayJs().format('YYYY年MM月DD日 HH:mm:ss'))
 				}
 			}
 		}
-		
 	}
 }
-.my-msg{
+.my-msg {
 	justify-content: flex-end;
-	.chat-msg-box{
-			margin-right: 10px;
-			.my-item{
-				position: relative;
-				max-width: 590px;
-				background: #3B7FFF !important;
-				border-radius: 6px;
-				font-size: 17px;
-				padding: 9px;
-				color: #fff;
+	.chat-msg-box {
+		margin-right: 10px;
+		.my-item {
+			position: relative;
+			max-width: 590px;
+			background: #3b7fff !important;
+			border-radius: 6px;
+			font-size: 17px;
+			padding: 9px;
+			color: #fff;
+		}
+		.my-item::after {
+			content: " ";
+			position: absolute;
+			width: 8px;
+			height: 8px;
+			background-color: #3b7fff;
+			transform: rotate(45deg);
+			top: calc(50% - 4px);
+			right: -4px;
+		}
+	}
+}
+.edit-content {
+	position: fixed;
+	width: 1580px;
+	height: 164px; //208
+	border-top: 1px solid #d6d6d6;
+	bottom: 0;
+	.edit-module {
+		display: flex;
+		justify-content: space-between;
+		height: 46px;
+		padding: 12px 22px;
+		.left-module,
+		.right-module {
+			display: flex;
+		}
+		.module-box {
+			width: 60px;
+			height: 26px;
+			text-align: center;
+			img {
+				width: 26px;
+				cursor: pointer;
 			}
-	.my-item::after{
-					content: ' ';
-					position: absolute;
-					width: 8px;
-					height: 8px;
-					background-color: #3B7FFF;
-					transform: rotate(45deg);
-					top: calc(50% - 4px);
-					right: -4px;
-				}
-			}
+		}
+	}
+	.edit-msg {
+		height: 66px;
+	}
+	.send-btn-box {
+		display: flex;
+		width: 1580px;
+		height: 52px; // btn-width + margin-bottom
+		justify-content: space-between;
+		.send-btn {
+			width: 116px;
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+			background-color: #e9e9e9;
+			border-radius: 6px;
+			font-size: 16px;
+			font-weight: 600;
+			color: #3b7fff;
+			margin-right: 25px;
+		}
+		.send-btn:hover {
+			background-color: #c5c4c4;
+		}
+	}
 }
 .search-input {
 	width: 217px;
@@ -272,17 +441,16 @@ const sendTime = ref(dayJs().format('YYYY年MM月DD日 HH:mm:ss'))
 .active-chat {
 	background-color: #c5c4c4;
 }
- // 发送时间为 yyyy年mm月dd日 00：00 宽度
-.w-170{
-	width: 170px;
+// 发送时间为 yyyy年mm月dd日 00：00 宽度
+.w-150 {
+	width: 150px;
 }
- // 发送时间为 00：00 宽度
-.w-70{
+// 发送时间为 00：00 宽度
+.w-70 {
 	width: 70px;
 }
- // 发送时间为 昨天：00：00 宽度
-.w-95{
+// 发送时间为 昨天：00：00 宽度
+.w-95 {
 	width: 76px;
 }
-
 </style>
