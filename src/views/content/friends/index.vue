@@ -186,8 +186,8 @@ const sendMsg = ref<any>();
 function handleSendMsg() {}
 </script>
 <template>
-	<div>
-		<PageHeader :title="activeItem.name"></PageHeader>
+	<div class="a">
+		<PageHeader :title="'新的朋友'"></PageHeader>
 		<div class="chat-box">
 			<div class="left-box">
 				<div class="content">
