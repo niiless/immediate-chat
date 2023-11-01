@@ -71,7 +71,7 @@ const directory = ref([
 ]);
 // 新的朋友列表
 const newFriendList = ref([
-	{ id: 1, name: "小红", intro: "你好，我是小红", avatar: "/src/assets/image/avator1.png", isFriend: false },
+	{ id: 1, name: "小红", intro: "你好，我是小红", avatar: "/src/assets/image/avator1.png", isFriend: false,sex:1,area:'德国 奥格斯堡' },
 	{ id: 2, name: "小明", intro: "好久不见，老同学！", avatar: "/src/assets/image/avator2.png", isFriend: true },
 	{ id: 3, name: "小兰", intro: "你好，我是小兰", avatar: "/src/assets/image/avator3.png", isFriend: true },
 	{ id: 4, name: "新一", intro: "你好，我是来自名侦探柯南的工藤新一", avatar: "/src/assets/image/avator4.png", isFriend: true },
@@ -134,7 +134,8 @@ const groupChatList = ref([
 				</div>
 			</div>
 			<div class="content">
-				<!-- <div class="box-content">
+				<div class="box-content" v-show="activeItem == 'new'">
+					<!-- <div>
 					<div class="newFriend-box" v-for="item in newFriendList" :key="item.id">
 						<div class="info">
 							<img :src="item.avatar" alt="" />
@@ -142,13 +143,33 @@ const groupChatList = ref([
 								<span class="f-name">{{ item.name }}</span>
 								<span class="f-intro">{{ item.intro }}</span>
 							</div>
-							<div class="isFriend-box">
+							<div class="isFriend-box" v-show="activeItem == 'group'">
 								<span v-if="item.isFriend" class="add-style">已添加</span>
 								<div v-else class="add-btn">接受</div>
 							</div>
 						</div>
 					</div>
 				</div> -->
+				<div>
+				<div class="check-friend">
+					<div class="add-info">
+						<img src="/src/assets/image/avator1.png" alt="">
+						<div class="info">
+							<div class="name-box">
+								<div class="name">立</div>
+								<img src="/src/assets/image/female.png" alt="">
+							</div>
+							<div class="area">地区：德国 奥格斯堡</div>
+						</div>
+					</div>
+					<div class="check-intro">
+							<div class="f-intro">立：我是立</div>
+							<div class="reply">回复</div>
+						</div>
+				</div>
+				<div class="check-btn">前往验证</div>
+			</div>
+				</div>
 				<Group :list="groupChatList" />
 			</div>
 		</div>
@@ -337,6 +358,74 @@ const groupChatList = ref([
 				}
 			}
 		}
+	}
+	.check-friend{
+		position: relative;
+		width: 422px;
+		min-height: 176px;
+		margin: 0 auto;
+		margin-top: 164px;
+		border-bottom: 2px solid #EAEAEA;
+		.add-info{
+			width: 100%;
+			height: 84px;
+			display: flex;
+			img{
+				width: 68px;
+				height: 68px;
+				border-radius: 5px;
+			}
+		}
+		.info{
+			
+			.name-box{
+				margin-left: 20px;
+				display: flex;
+				align-items: center;
+				.name{
+					max-width: 300px;
+					font-size: 20px;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					
+				}
+				img{
+					width: 15px;
+					height: 18px;
+					margin-left: 8px;
+				}
+			}
+			.area{
+				margin: 5px 20px;
+				color: #9E9E9E;
+				font-size: 16px;
+			}
+		}
+		.check-intro{
+			.f-intro{
+				color: #9E9E9E;
+				font-size: 16px;
+				padding: 6px;
+			}
+			.reply{
+				color: #576B95;
+				font-size: 16px;
+				padding: 6px;
+			}
+		}
+	}
+	.check-btn{
+		width: 128px;
+		height: 38px;
+		background: #3B7FFF;
+		border-radius: 5px;
+		margin: 0 auto;
+		margin-top: 38px;
+		font-size: 18px;
+		line-height: 38px;
+		text-align: center;
+		color: #fff;
 	}
 }
 .flex-center {
