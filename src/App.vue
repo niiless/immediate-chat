@@ -7,8 +7,8 @@ import Menu from "@/views/menu/index.vue";
 <template>
 	<div style="display: flex">
 		<Menu />
-		<Chat />
-		<!-- <Friend /> -->
+		<!-- <Chat /> -->
+		<Friend />
 	</div>
 </template>
 

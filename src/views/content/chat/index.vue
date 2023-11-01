@@ -37,7 +37,7 @@ const friendList = ref([
 	},
 	{
 		id: 3,
-		name: "小明",
+		name: "小红",
 		content: [
 			{
 				date: "2023年10月30日 10:38",
@@ -309,6 +309,7 @@ function handleSendMsg() {}
 				margin-left: 10px;
 				overflow: hidden;
 				text-overflow: ellipsis;
+				white-space: nowrap;
 				.name {
 					font-size: 16px;
 					font-weight: bold;

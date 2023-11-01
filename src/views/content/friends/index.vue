@@ -2,188 +2,97 @@
 import { PlusOutlined, SearchOutlined } from "@ant-design/icons-vue";
 import { ref, reactive } from "vue";
 import PageHeader from "@/views/header/index.vue";
-import dayJs from "dayjs";
+import Group from "@/views/content/friends/components/group.vue";
+// 当前点击的通讯录好友 或模块
+const activeItem = ref<number | string>(0);
+function handleChoseItem(friend: any) {
+	activeItem.value = friend.id;
+}
 // 好友列表
-const friendList = ref([
+const directory = ref([
 	{
 		id: 1,
-		name: "小明",
-		content: [
+		category: "A",
+		userList: [
 			{
-				date: "2023年10月30日 10:38",
-				msgList: [
-					{ type: "send", msg: "你好，有什么可以帮你的吗？" },
-					{ type: "send", msg: "你好，有什么可以帮你的吗？" },
-					{ type: "send", msg: "你好，有什么可以帮你的吗？" },
-					{ type: "send", msg: "你好，有什么可以帮你的吗？" },
-					{ type: "send", msg: "你好，有什么可以帮你的吗？" },
-					{ type: "send", msg: "你好，有什么可以帮你的吗？" },
-					{ type: "send", msg: "你好，有什么可以帮你的吗？" },
-					{ type: "send", msg: "你好，有什么可以帮你的吗？" },
-					{ type: "send", msg: "你好，有什么可以帮你的吗？" },
-					{ type: "recive", msg: "没有了，谢谢" },
-				],
+				id: "001",
+				name: "A",
+				avatar: "/src/assets/image/avator1.png",
 			},
 			{
-				date: "2023年10月30日 10:52",
-				msgList: [
-					{ type: "send", msg: "好的" },
-					{ type: "recive", msg: "嗯嗯" },
-				],
+				id: "002",
+				name: "ANSWE",
+				avatar: "/src/assets/image/avator2.png",
+			},
+			{
+				id: "003",
+				name: "爱茶",
+				avatar: "/src/assets/image/avator3.png",
+			},
+			{
+				id: "004",
+				name: "爱可以包容一切爱可以包容一切爱可以包容一切",
+				avatar: "/src/assets/image/avator4.png",
 			},
 		],
-		avatar: "/src/assets/image/avator1.png",
-		lastMsg: { date: "昨天", msg: "嗯嗯" },
-	},
-	{
-		id: 3,
-		name: "小明",
-		content: [
-			{
-				date: "2023年10月30日 10:38",
-				msgList: [
-					{ type: "send", msg: "你好，有什么可以帮你的吗？" },
-					{ type: "recive", msg: "没有了，谢谢" },
-				],
-			},
-			{
-				date: "2023年10月30日 10:52",
-				msgList: [
-					{ type: "send", msg: "好的" },
-					{ type: "recive", msg: "嗯嗯" },
-				],
-			},
-		],
-		avatar: "/src/assets/image/avator2.png",
-		lastMsg: { date: "昨天", msg: "嗯嗯" },
-	},
-	{
-		id: 4,
-		name: "小明",
-		content: [
-			{ date: "2023年10月30日 10:38", msgList: [{ type: "send", msg: "你好，有什么可以帮你的吗？" }] },
-			{
-				date: "2023年10月30日 10:52",
-				msgList: [
-					{ type: "send", msg: "好的" },
-					{ type: "recive", msg: "嗯嗯" },
-				],
-			},
-		],
-		avatar: "/src/assets/image/avator4.png",
-		lastMsg: { date: "昨天", msg: "嗯嗯" },
 	},
 	{
 		id: 2,
-		name: "小明",
-		content: [
-			{ date: "2023年10月30日 10:38", msgList: [{ type: "send", msg: "你好，有什么可以帮你的吗？" }] },
+		category: "B",
+		userList: [
 			{
-				date: "2023年10月30日 10:52",
-				msgList: [
-					{ type: "send", msg: "好的" },
-					{ type: "recive", msg: "嗯嗯" },
-				],
+				id: "005",
+				name: "百度网站",
+				avatar: "/src/assets/image/avator4.png",
+			},
+			{
+				id: "006",
+				name: "Boom",
+				avatar: "/src/assets/image/avator5.png",
 			},
 		],
-		avatar: "/src/assets/image/avator3.png",
-		lastMsg: { date: "昨天", msg: "嗯嗯" },
 	},
 	{
-		id: 5,
-		name: "小明",
-		content: [
-			{ date: "2023年10月30日 10:38", msgList: [{ type: "send", msg: "你好，有什么可以帮你的吗？" }] },
+		id: 3,
+		category: "C",
+		userList: [
 			{
-				date: "2023年10月30日 10:52",
-				msgList: [
-					{ type: "send", msg: "好的" },
-					{ type: "recive", msg: "嗯嗯" },
-				],
+				id: "007",
+				name: "Cardi B",
+				avatar: "/src/assets/image/avator4.png",
+			},
+			{
+				id: "008",
+				name: "蔡文姬",
+				avatar: "/src/assets/image/avator5.png",
 			},
 		],
-		avatar: "/src/assets/image/avator5.png",
-		lastMsg: { date: "昨天", msg: "嗯嗯" },
-	},
-	{
-		id: 6,
-		name: "小明",
-		content: [],
-		avatar: "/src/assets/image/avator5.png",
-		lastMsg: { date: "昨天", msg: "嗯嗯" },
-	},
-	{
-		id: 7,
-		name: "小明",
-		content: [],
-		avatar: "/src/assets/image/avator5.png",
-		lastMsg: { date: "昨天", msg: "嗯嗯" },
-	},
-	{
-		id: 8,
-		name: "小明",
-		content: [],
-		avatar: "/src/assets/image/avator5.png",
-		lastMsg: { date: "昨天", msg: "嗯嗯" },
-	},
-	{
-		id: 9,
-		name: "小明",
-		content: [],
-		avatar: "/src/assets/image/avator5.png",
-		lastMsg: { date: "昨天", msg: "嗯嗯" },
-	},
-	{
-		id: 10,
-		name: "小明",
-		content: [],
-		avatar: "/src/assets/image/avator5.png",
-		lastMsg: { date: "昨天", msg: "嗯嗯" },
-	},
-	{
-		id: 11,
-		name: "小明",
-		content: [],
-		avatar: "/src/assets/image/avator5.png",
-		lastMsg: { date: "昨天", msg: "嗯嗯" },
-	},
-	{
-		id: 12,
-		name: "小明",
-		content: [],
-		avatar: "/src/assets/image/avator5.png",
-		lastMsg: { date: "昨天", msg: "嗯嗯" },
-	},
-	{
-		id: 13,
-		name: "小明",
-		content: [],
-		avatar: "/src/assets/image/avator5.png",
-		lastMsg: { date: "昨天", msg: "嗯嗯" },
-	},
-	{
-		id: 14,
-		name: "小明",
-		content: [],
-		avatar: "/src/assets/image/avator5.png",
-		lastMsg: { date: "昨天", msg: "嗯嗯" },
 	},
 ]);
-// 当前聊天好友
-let activeItem = reactive({ id: 0, name: "", content: [], avatar: "" });
-// 选择好友
-function handleClickFriend(user: any) {
-	activeItem.id = user.id;
-	activeItem.name = user.name;
-	activeItem.content = user.content;
-	activeItem.avatar = user.avatar;
-}
-// 发送时间
-const sendTime = ref(dayJs().format("YYYY年MM月DD日 HH:mm:ss"));
-// 发送内容
-const sendMsg = ref<any>();
-// 发送
-function handleSendMsg() {}
+// 新的朋友列表
+const newFriendList = ref([
+	{ id: 1, name: "小红", intro: "你好，我是小红", avatar: "/src/assets/image/avator1.png", isFriend: false },
+	{ id: 2, name: "小明", intro: "好久不见，老同学！", avatar: "/src/assets/image/avator2.png", isFriend: true },
+	{ id: 3, name: "小兰", intro: "你好，我是小兰", avatar: "/src/assets/image/avator3.png", isFriend: true },
+	{ id: 4, name: "新一", intro: "你好，我是来自名侦探柯南的工藤新一", avatar: "/src/assets/image/avator4.png", isFriend: true },
+]);
+// 群聊列表
+const groupChatList = ref([
+	{ id: 1, name: "群聊1", avatar: "/src/assets/image/avator1.png" },
+	{ id: 2, name: "群聊2", avatar: "/src/assets/image/avator1.png" },
+	{ id: 3, name: "群聊3", avatar: "/src/assets/image/avator1.png" },
+	{ id: 4, name: "群聊4", avatar: "/src/assets/image/avator1.png" },
+	{ id: 5, name: "群聊5", avatar: "/src/assets/image/avator1.png" },
+	{ id: 6, name: "群聊6", avatar: "/src/assets/image/avator1.png" },
+	{ id: 7, name: "群聊7", avatar: "/src/assets/image/avator1.png" },
+	{ id: 8, name: "群聊8", avatar: "/src/assets/image/avator1.png" },
+	{ id: 9, name: "群聊9", avatar: "/src/assets/image/avator1.png" },
+	{ id: 10, name: "群聊10", avatar: "/src/assets/image/avator1.png" },
+	{ id: 11, name: "群聊11", avatar: "/src/assets/image/avator1.png" },
+	{ id: 12, name: "群聊12", avatar: "/src/assets/image/avator1.png" },
+	{ id: 13, name: "群聊13", avatar: "/src/assets/image/avator1.png" },
+	{ id: 14, name: "群聊14", avatar: "/src/assets/image/avator1.png" },
+]);
 </script>
 <template>
 	<div class="a">
@@ -191,92 +100,66 @@ function handleSendMsg() {}
 		<div class="chat-box">
 			<div class="left-box">
 				<div class="content">
-					<div class="chat-item finger" :class="activeItem.id == user.id ? 'active-chat' : ''" v-for="user in friendList" :key="user.id" @click="handleClickFriend(user)">
-						<img :src="user.avatar" />
-						<div class="info">
-							<span class="name">{{ user.name }}</span>
-							<span class="chat">{{ user.lastMsg.msg }}</span>
+					<div class="manage-box flex-center">
+						<img src="/src/assets/image/userIcon.png" alt="" />
+						通讯录管理
+					</div>
+					<div class="friends-item">
+						<div class="item-title">新的朋友</div>
+						<div class="item-content" :class="activeItem == 'new' ? 'active-style' : ''" @click="handleChoseItem({ id: 'new' })">
+							<img src="/src/assets/image/newFriend.png" alt="" />
+							<span>新的朋友</span>
 						</div>
-						<span class="chat-date">{{ user.lastMsg.date }}</span>
+					</div>
+					<div class="friends-item">
+						<div class="item-title">群聊</div>
+						<div class="item-content" :class="activeItem == 'group' ? 'active-style' : ''" @click="handleChoseItem({ id: 'group' })">
+							<img src="/src/assets/image/group.png" alt="" />
+							<span>群聊</span>
+						</div>
+					</div>
+					<div class="friends-item" v-for="item in directory" :key="item.id">
+						<div class="item-title">{{ item.category }}</div>
+						<div
+							class="item-content"
+							:class="activeItem == friend.id ? 'active-style' : ''"
+							v-for="friend in item.userList"
+							:key="friend.id"
+							@click="handleChoseItem(friend)"
+						>
+							<img :src="friend.avatar" alt="" />
+							<div class="name-box">{{ friend.name }}</div>
+						</div>
 					</div>
 				</div>
 			</div>
 			<div class="content">
-				<div class="chat-content">
-					<div class="chat-msg-item" v-for="(item, index) in activeItem.content" :key="index">
-						<div class="msg-date">{{ item.date }}</div>
-						<!-- 好友发送信息样式 此处div作为消息内容父盒子，用户v-if判断-->
-						<div v-for="msgs in item.msgList" :key="msgs">
-							<div v-if="msgs.type == 'send'">
-								<div class="msg-content">
-									<div class="chat-avatar">
-										<img :src="activeItem.avatar" alt="" />
-									</div>
-									<div class="chat-msg-box">
-										<div class="item">{{ msgs.msg }}</div>
-									</div>
-								</div>
+				<!-- <div class="box-content">
+					<div class="newFriend-box" v-for="item in newFriendList" :key="item.id">
+						<div class="info">
+							<img :src="item.avatar" alt="" />
+							<div class="intro-box">
+								<span class="f-name">{{ item.name }}</span>
+								<span class="f-intro">{{ item.intro }}</span>
 							</div>
-							<!-- 用户发送消息框样式 此处div作为消息内容父盒子，用户v-if判断-->
-							<div v-if="msgs.type == 'recive'">
-								<div class="msg-content my-msg">
-									<div class="chat-msg-box">
-										<div class="my-item">{{ msgs.msg }}</div>
-									</div>
-									<div class="chat-avatar">
-										<img src="/src/assets/image/myAvatar.png" alt="" />
-									</div>
-								</div>
+							<div class="isFriend-box">
+								<span v-if="item.isFriend" class="add-style">已添加</span>
+								<div v-else class="add-btn">接受</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="edit-content">
-					<div class="edit-module">
-						<div class="left-module">
-							<div class="module-box">
-								<img src="/src/assets/chat-icon/emoji-normal.png" alt="" />
-							</div>
-							<div class="module-box">
-								<img src="/src/assets/chat-icon/file-normal.png" alt="" />
-							</div>
-							<div class="module-box">
-								<img src="/src/assets/chat-icon/slice-normal.png" alt="" />
-							</div>
-							<div class="module-box">
-								<img src="/src/assets/chat-icon/record-noraml.png" alt="" />
-							</div>
-						</div>
-						<div class="right-module">
-							<div class="module-box">
-								<img src="/src/assets/chat-icon/phone-normal.png" alt="" />
-							</div>
-							<div class="module-box">
-								<img src="/src/assets/chat-icon/video-normal.png" alt="" />
-							</div>
-						</div>
-					</div>
-					<div class="edit-msg flex-center">
-						<a-textarea class="textarea-style" v-model:value="sendMsg" :auto-size="{ minRows: 2, maxRows: 2 }" />
-					</div>
-					<div class="send-btn-box finger">
-						<div></div>
-						<div class="send-btn finger" @click="handleSendMsg">发送(S)</div>
-					</div>
-				</div>
+				</div> -->
+				<Group :list="groupChatList" />
 			</div>
 		</div>
 	</div>
 </template>
 
 <style lang="less" scoped>
-// 由于设计稿是1920 * 1080，比例为16：9 浏览器实际视图宽高比的影响，为尽量还原设计稿
-// 将设计稿的尺寸缩放0.789倍
 .chat-box {
 	display: flex;
 	width: 1856px;
 	height: calc(100vh - 75px);
-	// margin-left: 64px;
 	background-color: #f5f5f5;
 }
 .left-box {
@@ -289,38 +172,58 @@ function handleSendMsg() {}
 		height: 100%;
 		overflow-y: scroll;
 		overflow-x: hidden;
-		.chat-item {
-			display: flex;
-			align-items: center;
-			width: 286px; //362
-			height: 75px;
+		.manage-box {
+			width: 260px;
+			height: 43px;
+			background-color: #fff;
+			border-radius: 4px;
+			font-size: 17px;
+			margin: 13px;
+			margin-bottom: 16px;
+			cursor: pointer;
 			img {
-				width: 46px;
-				height: 46px;
-				border-radius: 4px;
-				margin-left: 13px;
+				width: 12px;
+				height: 15px;
+				margin-right: 14px;
 			}
-			.info {
-				display: flex;
-				flex-direction: column;
-				justify-content: space-between;
-				width: 170px; //232
-				height: 46px;
-				margin-left: 10px;
-				overflow: hidden;
-				text-overflow: ellipsis;
-				.name {
-					font-size: 16px;
-					font-weight: bold;
-				}
-				.chat {
-					font-size: 13px;
-					color: #999999;
-				}
-			}
-			.chat-date {
+		}
+		.friends-item {
+			width: 286px;
+			min-height: 128px;
+			padding: 20px 0;
+			box-sizing: border-box;
+			.item-title {
 				font-size: 14px;
-				height: 46px;
+				height: 18px;
+				line-height: 18px;
+				color: #a1a1a1;
+				margin-left: 15px;
+			}
+			.item-content {
+				display: flex;
+				align-items: center;
+				width: 100%;
+				height: 70px;
+				padding: 15px;
+				cursor: pointer;
+				img {
+					width: 40px;
+					height: 40px;
+				}
+				span {
+					margin-left: 14px;
+					font-size: 17px;
+					font-weight: 400;
+				}
+				.name-box {
+					width: 200px;
+					margin-left: 14px;
+					font-size: 17px;
+					font-weight: 400;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+				}
 			}
 		}
 	}
@@ -334,13 +237,11 @@ function handleSendMsg() {}
 		background-color: transparent;
 		opacity: 0.5;
 	}
-
 	/* 滚动条滑块 */
 	.content::-webkit-scrollbar-thumb {
 		border-radius: 10px;
 		background: transparent;
 	}
-
 	/* 滚动条轨道 */
 	.content::-webkit-scrollbar-track {
 		background: transparent;
@@ -358,203 +259,95 @@ function handleSendMsg() {}
 }
 .content {
 	flex: 1;
-	// width: 1580px;
-	height: calc(100vh - 240px);
+	height: 100%;
+	overflow: hidden;
 	// background-color: #f5f5f5;
-	.chat-content {
-		height: calc(100vh - 240px);
+	.box-content {
+		height: 100%;
 		overflow-y: scroll;
 	}
-	.chat-content::-webkit-scrollbar {
+	.box-content::-webkit-scrollbar {
 		height: 8px;
 		width: 8px;
 	}
 	/* 两个滚动条交接处 -- x轴和y轴 */
-	.chat-content::-webkit-scrollbar-corner {
+	.box-content::-webkit-scrollbar-corner {
 		background-color: transparent;
 	}
-
 	/* 滚动条滑块 */
-	.chat-content::-webkit-scrollbar-thumb {
+	.box-content::-webkit-scrollbar-thumb {
 		border-radius: 10px;
 		-webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
 		background: #c5c4c4;
 	}
-
 	/* 滚动条轨道 */
-	.chat-content::-webkit-scrollbar-track {
+	.box-content::-webkit-scrollbar-track {
 		background: transparent;
 	}
-	.chat-msg-item {
-		position: relative;
-		width: 100%;
-		min-height: 122px;
-		overflow: hidden;
-		padding: 0 35px;
-		padding-top: 20px;
-		.msg-date {
-			width: 150px;
-			height: 22px;
-			margin: 0 auto;
-			margin-bottom: 18px;
-			background: #dadada;
-			border-radius: 3px;
-			line-height: 22px;
-			padding: 0 6px;
-			font-size: 13px;
-		}
-
-		.msg-content,
-		.my-msg {
+	.newFriend-box {
+		width: 84%;
+		height: 100px;
+		margin: 0 auto;
+		border-bottom: 2px solid #e7e7e7;
+		display: flex;
+		align-items: center;
+		.info {
+			width: 100%;
+			height: 60px;
 			display: flex;
+			justify-content: space-between;
 			align-items: center;
-			padding: 8px 0;
-			.chat-avatar {
-				width: 38px;
-				height: 38px;
-				border-radius: 3px;
-				img {
-					width: 100%;
+			.intro-box {
+				flex: 1;
+				height: 50px;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				.f-name {
+					font-size: 17px;
+					font-weight: 500;
+				}
+				.f-intro {
+					font-size: 15px;
+					color: #999;
 				}
 			}
-			.chat-msg-box {
-				margin-left: 10px;
-				.item,
-				.my-item {
-					position: relative;
-					max-width: 590px;
-					background: #fff;
-					border-radius: 6px;
-					font-size: 14px;
-					padding: 9px;
-				}
-				.item::after {
-					content: " ";
-					position: absolute;
-					width: 8px;
-					height: 8px;
-					background-color: #fff;
-					transform: rotate(45deg);
-					top: calc(50% - 4px);
-					left: -4px;
-				}
-			}
-		}
-	}
-}
-.my-msg {
-	justify-content: flex-end;
-	.chat-msg-box {
-		margin-right: 10px;
-		.my-item {
-			position: relative;
-			max-width: 590px;
-			background: #3b7fff !important;
-			border-radius: 6px;
-			font-size: 17px;
-			padding: 9px;
-			color: #fff;
-		}
-		.my-item::after {
-			content: " ";
-			position: absolute;
-			width: 8px;
-			height: 8px;
-			background-color: #3b7fff;
-			transform: rotate(45deg);
-			top: calc(50% - 4px);
-			right: -4px;
-		}
-	}
-}
-.edit-content {
-	position: fixed;
-	width: 1580px;
-	height: 164px; //208
-	border-top: 1px solid #d6d6d6;
-	bottom: 0;
-	.edit-module {
-		display: flex;
-		justify-content: space-between;
-		height: 46px;
-		padding: 12px 22px;
-		.left-module,
-		.right-module {
-			display: flex;
-		}
-		.module-box {
-			width: 42px;
-			height: 26px;
-			text-align: center;
 			img {
-				width: 26px;
-				cursor: pointer;
+				width: 60px;
+				height: 60px;
+				margin-right: 13px;
+			}
+			.isFriend-box {
+				width: 72px;
+				text-align: center;
+				.add-style {
+					color: #999;
+					font-size: 15px;
+				}
+				.add-btn {
+					width: 60px;
+					height: 26px;
+					background: #3b7fff;
+					border-radius: 5px;
+					color: #fff;
+					text-align: center;
+					line-height: 26px;
+					font-size: 16px;
+					cursor: pointer;
+				}
 			}
 		}
 	}
-	.edit-msg {
-		height: 66px;
-		padding: 0 10px;
-	}
-	.send-btn-box {
-		display: flex;
-		width: 1580px;
-		height: 52px; // btn-width + margin-bottom
-		justify-content: space-between;
-		.send-btn {
-			width: 116px;
-			height: 40px;
-			line-height: 40px;
-			text-align: center;
-			background-color: #e9e9e9;
-			border-radius: 6px;
-			font-size: 16px;
-			font-weight: 600;
-			color: #3b7fff;
-			margin-right: 25px;
-		}
-		.send-btn:hover {
-			background-color: #c5c4c4;
-		}
-	}
-}
-.textarea-style {
-	border: none;
-	background-color: transparent;
-	outline: none;
-	font-size: 16px;
-}
-:deep(.textarea-style, .ant-input:focus) {
-	box-shadow: none;
-	border-color: initial;
 }
 .flex-center {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
-.s-22 {
-	font-size: 17px;
-}
 .finger {
 	cursor: pointer;
 }
-.active-chat {
-	background-color: #c5c4c4;
-}
-// 发送时间为 yyyy年mm月dd日 00：00 宽度
-.w-150 {
-	width: 150px;
-}
-// 发送时间为 00：00 宽度
-.w-70 {
-	width: 70px;
-}
-// 发送时间为 昨天：00：00 宽度
-.w-95 {
-	width: 76px;
-}
-.w-16 {
-	width: 16px !important;
+.active-style {
+	background-color: #c8c7c6;
 }
 </style>

@@ -36,6 +36,7 @@
 	img {
 		width: 43px;
 		border-radius: 4px;
+		cursor: pointer;
 	}
 }
 .menu-item-box {
@@ -47,6 +48,7 @@
 		border-radius: 5px;
 		background-color: #5d95ff;
 		margin-bottom: 11px;
+		cursor: pointer;
 	}
 }
 .bottom-menu {
