@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { PlusOutlined, SearchOutlined } from "@ant-design/icons-vue";
-import { defineProps, ref } from "vue";
+import { defineProps, ref, defineEmits } from "vue";
 // 搜索框
 const search = ref("");
 const props = defineProps({
@@ -8,7 +8,15 @@ const props = defineProps({
 		type: String,
 		default: "",
 	},
+	showBack: {
+		type: Boolean,
+		default: false,
+	},
 });
+const emit = defineEmits(["closeFriendInfo"]);
+function handleBack() {
+	emit("closeFriendInfo");
+}
 </script>
 
 <template>
@@ -23,8 +31,11 @@ const props = defineProps({
 		</div>
 		<div class="content">
 			<div class="content-header">
-				<div class="friend-name">
+				<div class="friend-name" v-show="!showBack">
 					{{ props.title }}
+				</div>
+				<div class="back-btn finger" v-show="showBack">
+					<img src="/src/assets/image/back.png" alt="" @click="handleBack" />
 				</div>
 				<div class="edit-btn">
 					<div class="top-land flex-center">
@@ -165,5 +176,15 @@ const props = defineProps({
 }
 .a {
 	display: flex;
+}
+.back-btn {
+	width: 20px;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	img {
+		width: 20px;
+		height: 14px;
+	}
 }
 </style>

@@ -3,11 +3,13 @@ import { PlusOutlined, SearchOutlined } from "@ant-design/icons-vue";
 import { ref, reactive } from "vue";
 import PageHeader from "@/views/header/index.vue";
 import Group from "@/views/content/friends/components/group.vue";
+import FriendInfo from "@/views/content/friends/components/friendInfo.vue";
 // 当前点击的通讯录好友 或模块
 const activeItem = ref<number | string>(0);
 function handleChoseItem(friend: any) {
 	activeItem.value = friend.id;
 }
+const showAddInfo = ref(false);
 // 好友列表
 const directory = ref([
 	{
@@ -71,7 +73,7 @@ const directory = ref([
 ]);
 // 新的朋友列表
 const newFriendList = ref([
-	{ id: 1, name: "小红", intro: "你好，我是小红", avatar: "/src/assets/image/avator1.png", isFriend: false,sex:1,area:'德国 奥格斯堡' },
+	{ id: 1, name: "小红", intro: "你好，我是小红", avatar: "/src/assets/image/avator1.png", isFriend: false, sex: 1, area: "德国 奥格斯堡" },
 	{ id: 2, name: "小明", intro: "好久不见，老同学！", avatar: "/src/assets/image/avator2.png", isFriend: true },
 	{ id: 3, name: "小兰", intro: "你好，我是小兰", avatar: "/src/assets/image/avator3.png", isFriend: true },
 	{ id: 4, name: "新一", intro: "你好，我是来自名侦探柯南的工藤新一", avatar: "/src/assets/image/avator4.png", isFriend: true },
@@ -93,10 +95,19 @@ const groupChatList = ref([
 	{ id: 13, name: "群聊13", avatar: "/src/assets/image/avator1.png" },
 	{ id: 14, name: "群聊14", avatar: "/src/assets/image/avator1.png" },
 ]);
+// 点击新好友，接受
+function showFriendInfo() {
+	showAddInfo.value = true;
+}
+function closeFriendInfo() {
+	console.log("123123");
+
+	showAddInfo.value = false;
+}
 </script>
 <template>
 	<div class="a">
-		<PageHeader :title="'新的朋友'"></PageHeader>
+		<PageHeader :title="'新的朋友'" :showBack="showAddInfo" @closeFriendInfo="closeFriendInfo"></PageHeader>
 		<div class="chat-box">
 			<div class="left-box">
 				<div class="content">
@@ -107,7 +118,17 @@ const groupChatList = ref([
 					<div class="friends-item">
 						<div class="item-title">新的朋友</div>
 						<div class="item-content" :class="activeItem == 'new' ? 'active-style' : ''" @click="handleChoseItem({ id: 'new' })">
-							<img src="/src/assets/image/newFriend.png" alt="" />
+							<a-badge
+								class="ml-none"
+								:number-style="{
+									backgroundColor: '#FF2C2C',
+									color: '#fff',
+									boxShadow: 'none',
+								}"
+								:count="1"
+							>
+								<img src="/src/assets/image/newFriend.png" alt="" />
+							</a-badge>
 							<span>新的朋友</span>
 						</div>
 					</div>
@@ -135,42 +156,43 @@ const groupChatList = ref([
 			</div>
 			<div class="content">
 				<div class="box-content" v-show="activeItem == 'new'">
-					<!-- <div>
-					<div class="newFriend-box" v-for="item in newFriendList" :key="item.id">
-						<div class="info">
-							<img :src="item.avatar" alt="" />
-							<div class="intro-box">
-								<span class="f-name">{{ item.name }}</span>
-								<span class="f-intro">{{ item.intro }}</span>
-							</div>
-							<div class="isFriend-box" v-show="activeItem == 'group'">
-								<span v-if="item.isFriend" class="add-style">已添加</span>
-								<div v-else class="add-btn">接受</div>
+					<div v-if="!showAddInfo">
+						<div class="newFriend-box" v-for="item in newFriendList" :key="item.id">
+							<div class="info">
+								<img :src="item.avatar" alt="" />
+								<div class="intro-box">
+									<span class="f-name">{{ item.name }}</span>
+									<span class="f-intro">{{ item.intro }}</span>
+								</div>
+								<div class="isFriend-box" v-show="activeItem == 'new'">
+									<span v-if="item.isFriend" class="add-style">已添加</span>
+									<div v-else class="add-btn" @click="showFriendInfo">接受</div>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div> -->
-				<div>
-				<div class="check-friend">
-					<div class="add-info">
-						<img src="/src/assets/image/avator1.png" alt="">
-						<div class="info">
-							<div class="name-box">
-								<div class="name">立</div>
-								<img src="/src/assets/image/female.png" alt="">
+					<div v-else>
+						<div class="check-friend">
+							<div class="add-info">
+								<img src="/src/assets/image/avator1.png" alt="" />
+								<div class="info">
+									<div class="name-box">
+										<div class="name">立</div>
+										<img src="/src/assets/image/female.png" alt="" />
+									</div>
+									<div class="area">地区：德国 奥格斯堡</div>
+								</div>
 							</div>
-							<div class="area">地区：德国 奥格斯堡</div>
+							<div class="check-intro">
+								<div class="f-intro">立：我是立</div>
+								<div class="reply">回复</div>
+							</div>
 						</div>
+						<div class="check-btn finger">前往验证</div>
 					</div>
-					<div class="check-intro">
-							<div class="f-intro">立：我是立</div>
-							<div class="reply">回复</div>
-						</div>
 				</div>
-				<div class="check-btn">前往验证</div>
-			</div>
-				</div>
-				<Group :list="groupChatList" />
+				<Group :list="groupChatList" v-show="activeItem == 'group'" />
+				<FriendInfo v-show="activeItem != 'new' && activeItem != 'group'" />
 			</div>
 		</div>
 	</div>
@@ -359,66 +381,64 @@ const groupChatList = ref([
 			}
 		}
 	}
-	.check-friend{
+	.check-friend {
 		position: relative;
 		width: 422px;
 		min-height: 176px;
 		margin: 0 auto;
 		margin-top: 164px;
-		border-bottom: 2px solid #EAEAEA;
-		.add-info{
+		border-bottom: 2px solid #eaeaea;
+		.add-info {
 			width: 100%;
 			height: 84px;
 			display: flex;
-			img{
+			img {
 				width: 68px;
 				height: 68px;
 				border-radius: 5px;
 			}
 		}
-		.info{
-			
-			.name-box{
+		.info {
+			.name-box {
 				margin-left: 20px;
 				display: flex;
 				align-items: center;
-				.name{
+				.name {
 					max-width: 300px;
 					font-size: 20px;
 					overflow: hidden;
 					text-overflow: ellipsis;
 					white-space: nowrap;
-					
 				}
-				img{
+				img {
 					width: 15px;
 					height: 18px;
 					margin-left: 8px;
 				}
 			}
-			.area{
+			.area {
 				margin: 5px 20px;
-				color: #9E9E9E;
+				color: #9e9e9e;
 				font-size: 16px;
 			}
 		}
-		.check-intro{
-			.f-intro{
-				color: #9E9E9E;
+		.check-intro {
+			.f-intro {
+				color: #9e9e9e;
 				font-size: 16px;
 				padding: 6px;
 			}
-			.reply{
-				color: #576B95;
+			.reply {
+				color: #576b95;
 				font-size: 16px;
 				padding: 6px;
 			}
 		}
 	}
-	.check-btn{
+	.check-btn {
 		width: 128px;
 		height: 38px;
-		background: #3B7FFF;
+		background: #3b7fff;
 		border-radius: 5px;
 		margin: 0 auto;
 		margin-top: 38px;
@@ -438,5 +458,8 @@ const groupChatList = ref([
 }
 .active-style {
 	background-color: #c8c7c6;
+}
+.ml-none {
+	margin-left: 0 !important;
 }
 </style>
