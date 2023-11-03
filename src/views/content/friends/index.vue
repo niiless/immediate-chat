@@ -4,10 +4,13 @@ import { ref, reactive } from "vue";
 import PageHeader from "@/views/header/index.vue";
 import Group from "@/views/content/friends/components/group.vue";
 import FriendInfo from "@/views/content/friends/components/friendInfo.vue";
+import PassFriend from "@/views/content/friends/components/PassFriend.vue";
 // 当前点击的通讯录好友 或模块
 const activeItem = ref<number | string>(0);
+let detailInfo = reactive({});
 function handleChoseItem(friend: any) {
 	activeItem.value = friend.id;
+	detailInfo = friend;
 }
 const showAddInfo = ref(false);
 // 好友列表
@@ -20,21 +23,33 @@ const directory = ref([
 				id: "001",
 				name: "A",
 				avatar: "/src/assets/image/avator1.png",
+				wechatNo: "123",
+				area: "德国 匹兹堡",
+				styleRemark: "12312",
 			},
 			{
 				id: "002",
 				name: "ANSWE",
 				avatar: "/src/assets/image/avator2.png",
+				wechatNo: "456",
+				area: "中国大陆",
+				styleRemark: "3242341",
 			},
 			{
 				id: "003",
 				name: "爱茶",
 				avatar: "/src/assets/image/avator3.png",
+				wechatNo: "789",
+				area: "美国 底特律",
+				styleRemark: "自由美利坚，枪战每一天",
 			},
 			{
 				id: "004",
 				name: "爱可以包容一切爱可以包容一切爱可以包容一切",
 				avatar: "/src/assets/image/avator4.png",
+				wechatNo: "asd231",
+				area: "中国大陆",
+				styleRemark: "love",
 			},
 		],
 	},
@@ -46,11 +61,17 @@ const directory = ref([
 				id: "005",
 				name: "百度网站",
 				avatar: "/src/assets/image/avator4.png",
+				wechatNo: "dfssdf12",
+				area: "中国大陆",
+				styleRemark: "百度一下，你就知道",
 			},
 			{
 				id: "006",
 				name: "Boom",
 				avatar: "/src/assets/image/avator5.png",
+				wechatNo: "546546",
+				area: "中国大陆",
+				styleRemark: "Boom ！",
 			},
 		],
 	},
@@ -62,11 +83,15 @@ const directory = ref([
 				id: "007",
 				name: "Cardi B",
 				avatar: "/src/assets/image/avator4.png",
+				wechatNo: "bvnfn3",
+				area: "中国大陆",
 			},
 			{
 				id: "008",
 				name: "蔡文姬",
 				avatar: "/src/assets/image/avator5.png",
+				wechatNo: "bvnfgn123",
+				area: "中国大陆",
 			},
 		],
 	},
@@ -192,7 +217,8 @@ function closeFriendInfo() {
 					</div>
 				</div>
 				<Group :list="groupChatList" v-show="activeItem == 'group'" />
-				<FriendInfo v-show="activeItem != 'new' && activeItem != 'group'" />
+				<!-- <FriendInfo v-show="activeItem != 'new' && activeItem != 'group'" :info="detailInfo" /> -->
+				<PassFriend></PassFriend>
 			</div>
 		</div>
 	</div>

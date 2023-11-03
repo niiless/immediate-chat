@@ -13,15 +13,15 @@ const friendInfo = computed(() => props.info);
 	<div class="info-box">
 		<div class="userInfo">
 			<div class="avatar">
-				<img src="/src/assets/image/avator1.png" alt="" />
+				<img :src="friendInfo.avatar" alt="" />
 			</div>
 			<div class="intro">
 				<div class="name">
-					<div class="name-text">立</div>
+					<div class="name-text">{{ friendInfo.name }}</div>
 					<img src="/src/assets/image/female.png" alt="" />
 				</div>
-				<div class="wechat-No">微信号：UZ112544</div>
-				<div class="area">地区：湖蓝</div>
+				<div class="wechat-No">微信号：{{ friendInfo.wechatNo }}</div>
+				<div class="area">{{ friendInfo.area }}</div>
 			</div>
 			<div class="ellipsis">
 				<img src="/src/assets/chat-icon/ellipsis.png" alt="" />
@@ -34,7 +34,7 @@ const friendInfo = computed(() => props.info);
 		<div class="other-info">
 			<div class="item">
 				<div class="text">个性签名</div>
-				<div class="content">A</div>
+				<div class="content">{{ friendInfo.styleRemark }}</div>
 			</div>
 			<div class="item">
 				<div class="text">来源</div>
@@ -164,6 +164,7 @@ const friendInfo = computed(() => props.info);
 		padding: 0 10px;
 		text-align: center;
 		color: #576b95;
+		cursor: pointer;
 		img {
 			width: 26px;
 			height: 26px;
