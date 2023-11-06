@@ -154,6 +154,14 @@ function handleBack() {
 	margin-right: 13px;
 	background-color: #e2e2e2;
 	outline: none;
+	.ant-input-affix-wrapper:focus {
+		border-color: #d9d9d9;
+		box-shadow: none;
+	}
+	// :deep(.ant-input-affix-wrapper:hover) {
+	// 	border-color: #d9d9d9;
+	// 	box-shadow: none;
+	// }
 }
 :deep(.ant-input, .ant-input:focus, .ant-input:hover) {
 	box-shadow: none;
@@ -186,5 +194,17 @@ function handleBack() {
 		width: 20px;
 		height: 14px;
 	}
+}
+.ant-input-affix-wrapper {
+	border-color: #d9d9d9;
+	box-shadow: none;
+}
+.ant-input-affix-wrapper:focus {
+	border-color: #d9d9d9;
+	box-shadow: none;
+}
+.ant-input-affix-wrapper:hover {
+	border-color: #d9d9d9;
+	box-shadow: none;
 }
 </style>

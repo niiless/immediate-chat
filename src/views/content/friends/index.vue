@@ -5,6 +5,7 @@ import PageHeader from "@/views/header/index.vue";
 import Group from "@/views/content/friends/components/group.vue";
 import FriendInfo from "@/views/content/friends/components/friendInfo.vue";
 import PassFriend from "@/views/content/friends/components/PassFriend.vue";
+import ContactMange from "@/views/content/friends/components/contactMange.vue";
 // 当前点击的通讯录好友 或模块
 const activeItem = ref<number | string>(0);
 let detailInfo = reactive({});
@@ -13,6 +14,8 @@ function handleChoseItem(friend: any) {
 	detailInfo = friend;
 }
 const showAddInfo = ref(false);
+const showPassBox = ref(false);
+const showManage = ref(false);
 // 好友列表
 const directory = ref([
 	{
@@ -125,9 +128,23 @@ function showFriendInfo() {
 	showAddInfo.value = true;
 }
 function closeFriendInfo() {
-	console.log("123123");
-
 	showAddInfo.value = false;
+}
+// 关闭好友验证
+function closePassFriend() {
+	showPassBox.value = false;
+}
+
+function handleShowPassBox() {
+	showPassBox.value = true;
+}
+// 打开通讯录管理
+function showContactManage() {
+	showManage.value = true;
+}
+// 关闭通讯录管理
+function closeContactManage() {
+	showManage.value = false;
 }
 </script>
 <template>
@@ -136,7 +153,7 @@ function closeFriendInfo() {
 		<div class="chat-box">
 			<div class="left-box">
 				<div class="content">
-					<div class="manage-box flex-center">
+					<div class="manage-box flex-center" @click="showContactManage">
 						<img src="/src/assets/image/userIcon.png" alt="" />
 						通讯录管理
 					</div>
@@ -179,9 +196,9 @@ function closeFriendInfo() {
 					</div>
 				</div>
 			</div>
-			<div class="content">
+			<div class="content" v-show="activeItem">
 				<div class="box-content" v-show="activeItem == 'new'">
-					<div v-if="!showAddInfo">
+					<div v-if="!showAddInfo && !showPassBox">
 						<div class="newFriend-box" v-for="item in newFriendList" :key="item.id">
 							<div class="info">
 								<img :src="item.avatar" alt="" />
@@ -196,7 +213,7 @@ function closeFriendInfo() {
 							</div>
 						</div>
 					</div>
-					<div v-else>
+					<div v-if="showAddInfo && !showPassBox">
 						<div class="check-friend">
 							<div class="add-info">
 								<img src="/src/assets/image/avator1.png" alt="" />
@@ -213,13 +230,14 @@ function closeFriendInfo() {
 								<div class="reply">回复</div>
 							</div>
 						</div>
-						<div class="check-btn finger">前往验证</div>
+						<div class="check-btn finger" @click="handleShowPassBox">前往验证</div>
 					</div>
 				</div>
 				<Group :list="groupChatList" v-show="activeItem == 'group'" />
-				<!-- <FriendInfo v-show="activeItem != 'new' && activeItem != 'group'" :info="detailInfo" /> -->
-				<PassFriend></PassFriend>
+				<FriendInfo v-show="activeItem != 'new' && activeItem != 'group'" :info="detailInfo" />
+				<PassFriend v-if="showPassBox" @closePassFriend="closePassFriend"></PassFriend>
 			</div>
+			<ContactMange v-if="showManage" @closeContactManage="closeContactManage"></ContactMange>
 		</div>
 	</div>
 </template>
