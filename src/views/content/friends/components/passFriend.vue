@@ -73,7 +73,6 @@ function handleCancel() {
 							<span>不让他(她)看</span>
 						</div>
 						<div class="check-box">
-							<!-- <a-switch v-model:checked="isLock"></a-switch> -->
 							<div class="switch-btn" :class="isLock ? 'switch-active' : 'switch-normal'" @click="isLock = !isLock">
 								<div class="swtich-cricle" :class="isLock ? 'to-active' : 'to-normal'"></div>
 							</div>
@@ -238,7 +237,7 @@ function handleCancel() {
 		border-radius: 50%;
 	}
 }
-.switch-normal {
+.switch-normal{
 	border: 1px solid #e5e5e5;
 	background-color: #e5e5e5;
 	.swtich-cricle {
