@@ -325,37 +325,6 @@ function handleSendMsg() {}
 			}
 		}
 	}
-	.content::-webkit-scrollbar {
-		height: 6px;
-		width: 6px;
-		display: none;
-	}
-	/* 两个滚动条交接处 -- x轴和y轴 */
-	.content::-webkit-scrollbar-corner {
-		background-color: transparent;
-		opacity: 0.5;
-	}
-
-	/* 滚动条滑块 */
-	.content::-webkit-scrollbar-thumb {
-		border-radius: 10px;
-		background: transparent;
-	}
-
-	/* 滚动条轨道 */
-	.content::-webkit-scrollbar-track {
-		background: transparent;
-		opacity: 0.5;
-	}
-	.content:hover::-webkit-scrollbar-thumb {
-		border-radius: 10px;
-		-webkit-box-shadow: inset 0 0 5px #c5c4c4;
-		-webkit-box-shadow-opacity: 0.5;
-		background: #c5c4c4;
-	}
-	.content:hover::-webkit-scrollbar {
-		display: block;
-	}
 }
 .content {
 	flex: 1;
@@ -365,26 +334,6 @@ function handleSendMsg() {}
 	.chat-content {
 		height: calc(100vh - 240px);
 		overflow-y: scroll;
-	}
-	.chat-content::-webkit-scrollbar {
-		height: 8px;
-		width: 8px;
-	}
-	/* 两个滚动条交接处 -- x轴和y轴 */
-	.chat-content::-webkit-scrollbar-corner {
-		background-color: transparent;
-	}
-
-	/* 滚动条滑块 */
-	.chat-content::-webkit-scrollbar-thumb {
-		border-radius: 10px;
-		-webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-		background: #c5c4c4;
-	}
-
-	/* 滚动条轨道 */
-	.chat-content::-webkit-scrollbar-track {
-		background: transparent;
 	}
 	.chat-msg-item {
 		position: relative;

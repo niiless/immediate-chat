@@ -109,19 +109,19 @@ const newFriendList = ref([
 // 群聊列表
 const groupChatList = ref([
 	{ id: 1, name: "群聊1", avatar: "/src/assets/image/avator1.png" },
-	{ id: 2, name: "群聊2", avatar: "/src/assets/image/avator1.png" },
-	{ id: 3, name: "群聊3", avatar: "/src/assets/image/avator1.png" },
-	{ id: 4, name: "群聊4", avatar: "/src/assets/image/avator1.png" },
-	{ id: 5, name: "群聊5", avatar: "/src/assets/image/avator1.png" },
-	{ id: 6, name: "群聊6", avatar: "/src/assets/image/avator1.png" },
-	{ id: 7, name: "群聊7", avatar: "/src/assets/image/avator1.png" },
-	{ id: 8, name: "群聊8", avatar: "/src/assets/image/avator1.png" },
+	{ id: 2, name: "群聊2", avatar: "/src/assets/image/avator2.png" },
+	{ id: 3, name: "群聊3", avatar: "/src/assets/image/avator3.png" },
+	{ id: 4, name: "群聊4", avatar: "/src/assets/image/avator4.png" },
+	{ id: 5, name: "群聊5", avatar: "/src/assets/image/avator5.png" },
+	{ id: 6, name: "群聊6", avatar: "/src/assets/image/avator6.png" },
+	{ id: 7, name: "群聊7", avatar: "/src/assets/image/avator7.png" },
+	{ id: 8, name: "群聊8", avatar: "/src/assets/image/avator8.png" },
 	{ id: 9, name: "群聊9", avatar: "/src/assets/image/avator1.png" },
-	{ id: 10, name: "群聊10", avatar: "/src/assets/image/avator1.png" },
-	{ id: 11, name: "群聊11", avatar: "/src/assets/image/avator1.png" },
-	{ id: 12, name: "群聊12", avatar: "/src/assets/image/avator1.png" },
-	{ id: 13, name: "群聊13", avatar: "/src/assets/image/avator1.png" },
-	{ id: 14, name: "群聊14", avatar: "/src/assets/image/avator1.png" },
+	{ id: 10, name: "群聊10", avatar: "/src/assets/image/avator2.png" },
+	{ id: 11, name: "群聊11", avatar: "/src/assets/image/avator3.png" },
+	{ id: 12, name: "群聊12", avatar: "/src/assets/image/avator4.png" },
+	{ id: 13, name: "群聊13", avatar: "/src/assets/image/avator5.png" },
+	{ id: 14, name: "群聊14", avatar: "/src/assets/image/avator6.png" },
 ]);
 // 点击新好友，接受
 function showFriendInfo() {
@@ -148,8 +148,8 @@ function closeContactManage() {
 }
 </script>
 <template>
-	<div class="a">
-		<PageHeader :title="'新的朋友'" :showBack="showAddInfo" @closeFriendInfo="closeFriendInfo"></PageHeader>
+	<div>
+		<PageHeader :title="activeItem == 'new' ? '新的朋友' : activeItem == 'group' ? '群聊' : ''" :showBack="showAddInfo" @closeFriendInfo="closeFriendInfo"></PageHeader>
 		<div class="chat-box">
 			<div class="left-box">
 				<div class="content">
