@@ -12,6 +12,10 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	activeMenu: {
+		type: Number,
+		default: 1,
+	},
 });
 const emit = defineEmits(["closeFriendInfo"]);
 function handleBack() {
@@ -22,11 +26,12 @@ function handleBack() {
 <template>
 	<div class="header-box">
 		<div class="header">
-			<a-input v-model="search" class="search-input">
+			<a-input v-model="search" class="search-input" :class="props.activeMenu == 3 ? 'w-100' : ''">
 				<template #prefix><SearchOutlined class="s-22" /></template>
 			</a-input>
-			<div class="add-btn flex-center finger">
-				<PlusOutlined class="s-22" />
+			<div class="add-btn flex-center finger" v-if="props.activeMenu != 3">
+				<PlusOutlined class="s-22" v-show="props.activeMenu == 1" />
+				<img src="/src/assets/image/friend-add.png" alt="" v-show="props.activeMenu == 2" />
 			</div>
 		</div>
 		<div class="content">
@@ -84,6 +89,10 @@ function handleBack() {
 		height: 28px;
 		background-color: #e2e2e2;
 		border-radius: 6px;
+		img {
+			width: 28px; //35
+			height: 28px;
+		}
 	}
 }
 .content {
@@ -206,5 +215,8 @@ function handleBack() {
 .ant-input-affix-wrapper:hover {
 	border-color: #d9d9d9;
 	box-shadow: none;
+}
+.w-100 {
+	width: 100%;
 }
 </style>

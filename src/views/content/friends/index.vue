@@ -6,6 +6,7 @@ import Group from "@/views/content/friends/components/group.vue";
 import FriendInfo from "@/views/content/friends/components/friendInfo.vue";
 import PassFriend from "@/views/content/friends/components/PassFriend.vue";
 import ContactMange from "@/views/content/friends/components/contactMange.vue";
+
 // 当前点击的通讯录好友 或模块
 const activeItem = ref<number | string>(0);
 let detailInfo = reactive({});
@@ -149,7 +150,12 @@ function closeContactManage() {
 </script>
 <template>
 	<div>
-		<PageHeader :title="activeItem == 'new' ? '新的朋友' : activeItem == 'group' ? '群聊' : ''" :showBack="showAddInfo" @closeFriendInfo="closeFriendInfo"></PageHeader>
+		<PageHeader
+			:activeMenu="2"
+			:title="activeItem == 'new' ? '新的朋友' : activeItem == 'group' ? '群聊' : ''"
+			:showBack="showAddInfo"
+			@closeFriendInfo="closeFriendInfo"
+		></PageHeader>
 		<div class="chat-box">
 			<div class="left-box">
 				<div class="content">

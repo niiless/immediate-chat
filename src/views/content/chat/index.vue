@@ -36,6 +36,22 @@ const friendList = ref([
 		lastMsg: { date: "昨天", msg: "嗯嗯" },
 	},
 	{
+		id: 2,
+		name: "隔壁邻居",
+		content: [
+			{ date: "2023年10月30日 10:38", msgList: [{ type: "send", msg: "你好，有什么可以帮你的吗？" }] },
+			{
+				date: "2023年10月30日 10:52",
+				msgList: [
+					{ type: "send", msg: "好的" },
+					{ type: "recive", msg: "嗯嗯" },
+				],
+			},
+		],
+		avatar: "/src/assets/image/avator4.png",
+		lastMsg: { date: "昨天", msg: "嗯嗯" },
+	},
+	{
 		id: 3,
 		name: "小红",
 		content: [
@@ -59,23 +75,7 @@ const friendList = ref([
 	},
 	{
 		id: 4,
-		name: "小明",
-		content: [
-			{ date: "2023年10月30日 10:38", msgList: [{ type: "send", msg: "你好，有什么可以帮你的吗？" }] },
-			{
-				date: "2023年10月30日 10:52",
-				msgList: [
-					{ type: "send", msg: "好的" },
-					{ type: "recive", msg: "嗯嗯" },
-				],
-			},
-		],
-		avatar: "/src/assets/image/avator4.png",
-		lastMsg: { date: "昨天", msg: "嗯嗯" },
-	},
-	{
-		id: 2,
-		name: "小明",
+		name: "CITY SUPER",
 		content: [
 			{ date: "2023年10月30日 10:38", msgList: [{ type: "send", msg: "你好，有什么可以帮你的吗？" }] },
 			{
@@ -91,7 +91,7 @@ const friendList = ref([
 	},
 	{
 		id: 5,
-		name: "小明",
+		name: "德云色DYS",
 		content: [
 			{ date: "2023年10月30日 10:38", msgList: [{ type: "send", msg: "你好，有什么可以帮你的吗？" }] },
 			{
@@ -107,65 +107,65 @@ const friendList = ref([
 	},
 	{
 		id: 6,
-		name: "小明",
+		name: "Vivian",
 		content: [],
-		avatar: "/src/assets/image/avator5.png",
+		avatar: "/src/assets/image/avator6.png",
 		lastMsg: { date: "昨天", msg: "嗯嗯" },
 	},
 	{
 		id: 7,
 		name: "小明",
 		content: [],
-		avatar: "/src/assets/image/avator5.png",
+		avatar: "/src/assets/image/avator7.png",
 		lastMsg: { date: "昨天", msg: "嗯嗯" },
 	},
 	{
 		id: 8,
-		name: "小明",
+		name: "Sabastianes",
 		content: [],
-		avatar: "/src/assets/image/avator5.png",
+		avatar: "/src/assets/image/avator8.png",
 		lastMsg: { date: "昨天", msg: "嗯嗯" },
 	},
 	{
 		id: 9,
-		name: "小明",
+		name: "卢本伟",
 		content: [],
-		avatar: "/src/assets/image/avator5.png",
+		avatar: "/src/assets/image/avator4.png",
 		lastMsg: { date: "昨天", msg: "嗯嗯" },
 	},
 	{
 		id: 10,
-		name: "小明",
+		name: "莣丶叻i彡",
 		content: [],
-		avatar: "/src/assets/image/avator5.png",
+		avatar: "/src/assets/image/avator2.png",
 		lastMsg: { date: "昨天", msg: "嗯嗯" },
 	},
 	{
 		id: 11,
-		name: "小明",
+		name: "Andy Nasty",
 		content: [],
-		avatar: "/src/assets/image/avator5.png",
+		avatar: "/src/assets/image/avator1.png",
 		lastMsg: { date: "昨天", msg: "嗯嗯" },
 	},
 	{
 		id: 12,
-		name: "小明",
+		name: "Blastic",
 		content: [],
-		avatar: "/src/assets/image/avator5.png",
+		avatar: "/src/assets/image/avator1.png",
 		lastMsg: { date: "昨天", msg: "嗯嗯" },
 	},
 	{
 		id: 13,
-		name: "小明",
+		name: "胜利",
 		content: [],
-		avatar: "/src/assets/image/avator5.png",
+		avatar: "/src/assets/image/avator6.png",
 		lastMsg: { date: "昨天", msg: "嗯嗯" },
 	},
 	{
 		id: 14,
-		name: "小明",
+		name: "光辉",
 		content: [],
-		avatar: "/src/assets/image/avator5.png",
+		avatar: "/src/assets/image/avator8.png",
 		lastMsg: { date: "昨天", msg: "嗯嗯" },
 	},
 ]);
@@ -178,16 +178,46 @@ function handleClickFriend(user: any) {
 	activeItem.content = user.content;
 	activeItem.avatar = user.avatar;
 }
-// 发送时间
-const sendTime = ref(dayJs().format("YYYY年MM月DD日 HH:mm:ss"));
+
 // 发送内容
 const sendMsg = ref<any>();
+const showTips = ref(false);
 // 发送
-function handleSendMsg() {}
+function handleSendMsg() {
+	if (!sendMsg.value || !sendMsg.value.trim()) {
+		showTips.value = true;
+		setTimeout(() => {
+			showTips.value = false;
+		}, 2000);
+		return;
+	}
+	const sendTime = dayJs(Date.now()).format("HH:mm");
+	const index = friendList.value.findIndex((v) => v.id == activeItem.id);
+	if (friendList.value[index].content.length > 0) {
+		const len = friendList.value[index].content.length;
+		const lastMsgDate = friendList.value[index].content[len - 1].date;
+		console.log(lastMsgDate, sendTime);
+
+		if (lastMsgDate == sendTime) {
+			friendList.value[index].content[len - 1].msgList.push({ type: "recive", msg: sendMsg.value });
+		} else {
+			friendList.value[index].content.push({
+				date: sendTime,
+				msgList: [{ type: "recive", msg: sendMsg.value }],
+			});
+		}
+	} else {
+		friendList.value[index].content.push({
+			date: sendTime,
+			msgList: [{ type: "recive", msg: sendMsg.value }],
+		});
+	}
+	sendMsg.value = "";
+}
 </script>
 <template>
 	<div>
-		<PageHeader :title="activeItem.name"></PageHeader>
+		<PageHeader :activeMenu="1" :title="activeItem.name"></PageHeader>
 		<div class="chat-box">
 			<div class="left-box">
 				<div class="content">
@@ -201,10 +231,10 @@ function handleSendMsg() {}
 					</div>
 				</div>
 			</div>
-			<div class="content">
+			<div class="content" v-show="activeItem.name">
 				<div class="chat-content">
 					<div class="chat-msg-item" v-for="(item, index) in activeItem.content" :key="index">
-						<div class="msg-date">{{ item.date }}</div>
+						<div class="msg-date" :class="item.date.includes('年') ? 'w-150' : item.date.includes('昨天') ? 'w-95' : 'w-50'">{{ item.date }}</div>
 						<!-- 好友发送信息样式 此处div作为消息内容父盒子，用户v-if判断-->
 						<div v-for="msgs in item.msgList" :key="msgs">
 							<div v-if="msgs.type == 'send'">
@@ -261,6 +291,7 @@ function handleSendMsg() {}
 					</div>
 					<div class="send-btn-box finger">
 						<div></div>
+						<div class="tips" v-show="showTips">不能发送空白信息</div>
 						<div class="send-btn finger" @click="handleSendMsg">发送(S)</div>
 					</div>
 				</div>
@@ -324,6 +355,37 @@ function handleSendMsg() {}
 				height: 46px;
 			}
 		}
+	}
+	.content::-webkit-scrollbar {
+		height: 6px;
+		width: 6px;
+		display: none;
+	}
+	/* 两个滚动条交接处 -- x轴和y轴 */
+	.content::-webkit-scrollbar-corner {
+		background-color: transparent;
+		opacity: 0.5;
+	}
+
+	/* 滚动条滑块 */
+	.content::-webkit-scrollbar-thumb {
+		border-radius: 10px;
+		background: transparent;
+	}
+
+	/* 滚动条轨道 */
+	.content::-webkit-scrollbar-track {
+		background: transparent;
+		opacity: 0.5;
+	}
+	.content:hover::-webkit-scrollbar-thumb {
+		border-radius: 10px;
+		-webkit-box-shadow: inset 0 0 5px #c5c4c4;
+		-webkit-box-shadow-opacity: 0.5;
+		background: #c5c4c4;
+	}
+	.content:hover::-webkit-scrollbar {
+		display: block;
 	}
 }
 .content {
@@ -447,6 +509,7 @@ function handleSendMsg() {}
 		padding: 0 10px;
 	}
 	.send-btn-box {
+		position: relative;
 		display: flex;
 		width: 1580px;
 		height: 52px; // btn-width + margin-bottom
@@ -465,6 +528,32 @@ function handleSendMsg() {}
 		}
 		.send-btn:hover {
 			background-color: #c5c4c4;
+		}
+
+		.tips {
+			position: absolute;
+			width: 140px;
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+			font-size: 14px;
+			top: -50px;
+			right: 20px;
+			background-color: #fff;
+			border: 1px solid #e9e9e9;
+			border-radius: 5px;
+		}
+		.tips::after {
+			content: "";
+			position: absolute;
+			width: 10px;
+			height: 10px;
+			background-color: #fff;
+			border-right: 1px solid #e9e9e9;
+			border-bottom: 1px solid #e9e9e9;
+			transform: rotate(45deg);
+			left: calc(50% + 5px);
+			bottom: -5px;
 		}
 	}
 }
@@ -494,15 +583,15 @@ function handleSendMsg() {}
 }
 // 发送时间为 yyyy年mm月dd日 00：00 宽度
 .w-150 {
-	width: 150px;
+	width: 150px !important;
 }
 // 发送时间为 00：00 宽度
-.w-70 {
-	width: 70px;
+.w-50 {
+	width: 50px !important;
 }
 // 发送时间为 昨天：00：00 宽度
 .w-95 {
-	width: 76px;
+	width: 95px !important;
 }
 .w-16 {
 	width: 16px !important;

@@ -1,28 +1,29 @@
+import Layout from "@/views/layout/index.vue";
+
 export const RootRoute = {
 	path: "/",
-	name: "Root",
-	redirect: "",
+	name: "index",
+	component: Layout,
 	meta: {
-		title: "Root",
+		title: "index",
 	},
-};
-
-export const LeftMenu = {
-	path: "/a",
-	name: "A",
-	component: () => import("/@/view/A.vue"),
-	meta: {
-		title: "A页面",
-	},
-};
-
-export const BRoute = {
-	path: "/b",
-	name: "B",
-	component: () => import("/@/view/B.vue"),
-	meta: {
-		title: "B页面",
-	},
+	children: [
+		{
+			path: "/chat",
+			component: () => import("@/views/content/chat/index.vue"),
+			name: "Chat",
+		},
+		{
+			path: "/friend",
+			component: () => import("@/views/content/friends/index.vue"),
+			name: "Friends",
+		},
+		{
+			path: "/collect",
+			component: () => import("@/views/content/collect/index.vue"),
+			name: "Collect",
+		},
+	],
 };
 
 export const basicRoutes = [RootRoute];

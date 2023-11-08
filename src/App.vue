@@ -1,17 +1,7 @@
-<script setup lang="ts">
-import Chat from "@/views/content/chat/index.vue";
-import Friend from "@/views/content/friends/index.vue";
-import Menu from "@/views/menu/index.vue";
-import Collect from "@/views/content/collect/index.vue";
-</script>
+<script setup lang="ts"></script>
 
 <template>
-	<div style="display: flex">
-		<Menu />
-		<!-- <Chat /> -->
-		<!-- <Friend /> -->
-		<Collect></Collect>
-	</div>
+	<div><RouterView /></div>
 </template>
 
 <style lang="less" scoped>

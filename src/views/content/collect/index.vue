@@ -62,7 +62,7 @@ function closeCollectNote() {
 </script>
 <template>
 	<div>
-		<PageHeader :title="getHeaderTitle(activeItem)"></PageHeader>
+		<PageHeader :activeMenu="3" :title="getHeaderTitle(activeItem)"></PageHeader>
 		<div class="chat-box">
 			<div class="left-box">
 				<div class="content">
@@ -119,7 +119,6 @@ function closeCollectNote() {
 			</div>
 		</div>
 		<Notes v-if="showNote" @closeCollectNote="closeCollectNote"></Notes>
-		<Setting></Setting>
 	</div>
 </template>
 
