@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { PlusOutlined, SearchOutlined } from "@ant-design/icons-vue";
-import { ref, reactive } from "vue";
+import { ref, reactive, nextTick } from "vue";
 import PageHeader from "@/views/header/index.vue";
 import dayJs from "dayjs";
 // 好友列表
@@ -32,7 +32,7 @@ const friendList = ref([
 				],
 			},
 		],
-		avatar: "/src/assets/image/avator1.png",
+		avatar: "./image/avator1.png",
 		lastMsg: { date: "昨天", msg: "嗯嗯" },
 	},
 	{
@@ -48,7 +48,7 @@ const friendList = ref([
 				],
 			},
 		],
-		avatar: "/src/assets/image/avator4.png",
+		avatar: "./image/avator4.png",
 		lastMsg: { date: "昨天", msg: "嗯嗯" },
 	},
 	{
@@ -70,7 +70,7 @@ const friendList = ref([
 				],
 			},
 		],
-		avatar: "/src/assets/image/avator2.png",
+		avatar: "./image/avator2.png",
 		lastMsg: { date: "昨天", msg: "嗯嗯" },
 	},
 	{
@@ -86,7 +86,7 @@ const friendList = ref([
 				],
 			},
 		],
-		avatar: "/src/assets/image/avator3.png",
+		avatar: "./image/avator3.png",
 		lastMsg: { date: "昨天", msg: "嗯嗯" },
 	},
 	{
@@ -102,70 +102,70 @@ const friendList = ref([
 				],
 			},
 		],
-		avatar: "/src/assets/image/avator5.png",
+		avatar: "./image/avator5.png",
 		lastMsg: { date: "昨天", msg: "嗯嗯" },
 	},
 	{
 		id: 6,
 		name: "Vivian",
 		content: [],
-		avatar: "/src/assets/image/avator6.png",
+		avatar: "./image/avator6.png",
 		lastMsg: { date: "昨天", msg: "嗯嗯" },
 	},
 	{
 		id: 7,
 		name: "小明",
 		content: [],
-		avatar: "/src/assets/image/avator7.png",
+		avatar: "./image/avator7.png",
 		lastMsg: { date: "昨天", msg: "嗯嗯" },
 	},
 	{
 		id: 8,
 		name: "Sabastianes",
 		content: [],
-		avatar: "/src/assets/image/avator8.png",
+		avatar: "./image/avator8.png",
 		lastMsg: { date: "昨天", msg: "嗯嗯" },
 	},
 	{
 		id: 9,
 		name: "卢本伟",
 		content: [],
-		avatar: "/src/assets/image/avator4.png",
+		avatar: "./image/avator4.png",
 		lastMsg: { date: "昨天", msg: "嗯嗯" },
 	},
 	{
 		id: 10,
 		name: "莣丶叻i彡",
 		content: [],
-		avatar: "/src/assets/image/avator2.png",
+		avatar: "./image/avator2.png",
 		lastMsg: { date: "昨天", msg: "嗯嗯" },
 	},
 	{
 		id: 11,
 		name: "Andy Nasty",
 		content: [],
-		avatar: "/src/assets/image/avator1.png",
+		avatar: "./image/avator1.png",
 		lastMsg: { date: "昨天", msg: "嗯嗯" },
 	},
 	{
 		id: 12,
 		name: "Blastic",
 		content: [],
-		avatar: "/src/assets/image/avator1.png",
+		avatar: "./image/avator1.png",
 		lastMsg: { date: "昨天", msg: "嗯嗯" },
 	},
 	{
 		id: 13,
 		name: "胜利",
 		content: [],
-		avatar: "/src/assets/image/avator6.png",
+		avatar: "./image/avator6.png",
 		lastMsg: { date: "昨天", msg: "嗯嗯" },
 	},
 	{
 		id: 14,
 		name: "光辉",
 		content: [],
-		avatar: "/src/assets/image/avator8.png",
+		avatar: "./image/avator8.png",
 		lastMsg: { date: "昨天", msg: "嗯嗯" },
 	},
 ]);
@@ -177,6 +177,10 @@ function handleClickFriend(user: any) {
 	activeItem.name = user.name;
 	activeItem.content = user.content;
 	activeItem.avatar = user.avatar;
+	nextTick(() => {
+		const box: any = document.querySelector("#msgBox");
+		box.scrollTop = box.scrollHeight;
+	});
 }
 
 // 发送内容
@@ -212,6 +216,10 @@ function handleSendMsg() {
 			msgList: [{ type: "recive", msg: sendMsg.value }],
 		});
 	}
+	nextTick(() => {
+		const box: any = document.querySelector("#msgBox");
+		box.scrollTop = box.scrollHeight;
+	});
 	sendMsg.value = "";
 }
 </script>
@@ -232,7 +240,7 @@ function handleSendMsg() {
 				</div>
 			</div>
 			<div class="content" v-show="activeItem.name">
-				<div class="chat-content">
+				<div class="chat-content" id="msgBox">
 					<div class="chat-msg-item" v-for="(item, index) in activeItem.content" :key="index">
 						<div class="msg-date" :class="item.date.includes('年') ? 'w-150' : item.date.includes('昨天') ? 'w-95' : 'w-50'">{{ item.date }}</div>
 						<!-- 好友发送信息样式 此处div作为消息内容父盒子，用户v-if判断-->
@@ -253,9 +261,7 @@ function handleSendMsg() {
 									<div class="chat-msg-box">
 										<div class="my-item">{{ msgs.msg }}</div>
 									</div>
-									<div class="chat-avatar">
-										<img src="/src/assets/image/myAvatar.png" alt="" />
-									</div>
+									<div class="chat-avatar"><img :src="`./image/myAvatar.png`" alt="" /></div>
 								</div>
 							</div>
 						</div>
@@ -264,26 +270,14 @@ function handleSendMsg() {
 				<div class="edit-content">
 					<div class="edit-module">
 						<div class="left-module">
-							<div class="module-box">
-								<img src="/src/assets/chat-icon/emoji-normal.png" alt="" />
-							</div>
-							<div class="module-box">
-								<img src="/src/assets/chat-icon/file-normal.png" alt="" />
-							</div>
-							<div class="module-box">
-								<img src="/src/assets/chat-icon/slice-normal.png" alt="" />
-							</div>
-							<div class="module-box">
-								<img src="/src/assets/chat-icon/record-noraml.png" alt="" />
-							</div>
+							<div class="module-box"><img :src="`./chat-icon/emoji-normal.png`" alt="" /></div>
+							<div class="module-box"><img :src="`./chat-icon/file-normal.png`" alt="" /></div>
+							<div class="module-box"><img :src="`./chat-icon/slice-normal.png`" alt="" /></div>
+							<div class="module-box"><img :src="`./chat-icon/record-noraml.png`" alt="" /></div>
 						</div>
 						<div class="right-module">
-							<div class="module-box">
-								<img src="/src/assets/chat-icon/phone-normal.png" alt="" />
-							</div>
-							<div class="module-box">
-								<img src="/src/assets/chat-icon/video-normal.png" alt="" />
-							</div>
+							<div class="module-box"><img :src="`./chat-icon/phone-normal.png`" alt="" /></div>
+							<div class="module-box"><img :src="`./chat-icon/video-normal.png`" alt="" /></div>
 						</div>
 					</div>
 					<div class="edit-msg flex-center">
@@ -563,7 +557,8 @@ function handleSendMsg() {
 	outline: none;
 	font-size: 16px;
 }
-:deep(.textarea-style, .ant-input:focus) {
+/deep/ .textarea-style,
+.ant-input:focus {
 	box-shadow: none;
 	border-color: initial;
 }

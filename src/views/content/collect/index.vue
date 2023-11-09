@@ -67,26 +67,26 @@ function closeCollectNote() {
 			<div class="left-box">
 				<div class="content">
 					<div class="manage-box flex-center" @click="handleShowNote">
-						<img src="/src/assets/image/collect-add.png" alt="" />
+						<img :src="`./image/collect-add.png`" alt="" />
 						新建笔记
 					</div>
 					<div class="collect-item">
 						<div class="item" :class="activeItem == 'all' ? 'active-style' : ''" @click="handleClickCollectItem('all')">
-							<img src="/src/assets/image/collect-all.png" alt="" />
+							<img :src="`./image/collect-all.png`" alt="" />
 							<span>全部收藏</span>
 						</div>
 						<div class="item" :class="activeItem == 'recent' ? 'active-style' : ''" @click="handleClickCollectItem('recent')">
-							<img src="/src/assets/image/collect-recent.png" alt="" />
+							<img :src="`./image/collect-recent.png`" alt="" />
 							<span>最近使用</span>
 						</div>
 						<div class="item" :class="activeItem == 'file' ? 'active-style' : ''" @click="handleClickCollectItem('file')">
-							<img src="/src/assets/image/collect-file.png" alt="" />
+							<img :src="`./image/collect-file.png`" alt="" />
 							<span>文件</span>
 						</div>
 						<a-menu v-model:selectedKeys="state.selectedKeys" mode="inline" :open-keys="state.openKeys">
 							<a-sub-menu key="sub1" title="标签">
 								<template v-slot:icon>
-									<img src="/src/assets/image/collect-label.png" class="img-icon" alt="" />
+									<img :src="`./image/collect-label.png`" class="img-icon" alt="" />
 								</template>
 								<a-menu-item key="1" @click="handleClickCollectItem('office')"> office </a-menu-item>
 							</a-sub-menu>
@@ -111,7 +111,7 @@ function closeCollectNote() {
 							</div>
 						</div>
 						<div class="right">
-							<img :src="`/src/assets/file-icon/${item.fileType}Type.png`" alt="" />
+							<img :src="`./file-icon/${item.fileType}Type.png`" alt="" />
 							<span>{{ item.date }}</span>
 						</div>
 					</div>
@@ -169,10 +169,10 @@ function closeCollectNote() {
 					margin-right: 14px;
 				}
 			}
-			:deep(.ant-menu-title-content) {
+			/deep/ .ant-menu-title-content {
 				font-size: 16px;
 			}
-			:deep(.ant-menu .ant-menu-item) {
+			/deep/ .ant-menu .ant-menu-item {
 				border-radius: 0;
 				margin-inline: 0;
 				padding-inline: 0;
@@ -181,10 +181,10 @@ function closeCollectNote() {
 				padding-left: 54px !important;
 				font-size: 16px;
 			}
-			:deep(.ant-menu-light .ant-menu-item-selected) {
+			/deep/ .ant-menu-light .ant-menu-item-selected {
 				background: #dfdfdf;
 			}
-			:deep(:where(.css-dev-only-do-not-override-185kyl0).ant-menu-light.ant-menu-inline .ant-menu-sub.ant-menu-inline) {
+			/deep/ .ant-menu-light.ant-menu-inline .ant-menu-sub.ant-menu-inline {
 				background: transparent;
 			}
 		}

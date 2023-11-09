@@ -21,10 +21,10 @@ function closeBox() {
 			<div class="title">设置</div>
 			<div class="edit-btn">
 				<div class="btn-item">
-					<img src="/src/assets/chat-icon/shrink.png" class="h-2" alt="" />
+					<img :src="`./chat-icon/shrink.png`" class="h-2" alt="" />
 				</div>
 				<div class="btn-item" @click="closeBox">
-					<img src="/src/assets/chat-icon/close.png" alt="" />
+					<img :src="`./chat-icon/close.png`" alt="" />
 				</div>
 			</div>
 		</div>
@@ -42,7 +42,7 @@ function closeBox() {
 			<div class="right-content">
 				<div class="count-setting" v-show="activeKey == '1'">
 					<div class="info-card">
-						<img src="/src/assets/image/myAvatar.png" alt="" />
+						<img :src="`./image/myAvatar.png`" alt="" />
 						<div>小刘爱设计</div>
 					</div>
 					<div class="auto-login">
@@ -406,7 +406,7 @@ function closeBox() {
 				.check {
 					margin-bottom: 16px;
 				}
-				:deep(.check .ant-checkbox-inner) {
+				/deep/ .check .ant-checkbox-inner {
 					// 设置 checkbox 的大小
 					width: 19px;
 					height: 20px;
@@ -551,29 +551,29 @@ function closeBox() {
 	transform: translateX(0);
 	transition: 0.3s all ease-in-out;
 }
-:deep(.ant-tabs-tab-btn) {
+/deep/ .ant-tabs-tab-btn {
 	font-size: 20px;
 	color: #a2a2a2;
 }
-:deep(.ant-tabs-tab .ant-tabs-tab-active) {
+/deep/ .ant-tabs-tab .ant-tabs-tab-active {
 	color: #3b7fff;
 }
-:deep(:where(.css-dev-only-do-not-override-185kyl0).ant-tabs-left > .ant-tabs-nav .ant-tabs-tab + .ant-tabs-tab) {
+/deep/ .ant-tabs-left > .ant-tabs-nav .ant-tabs-tab + .ant-tabs-tab {
 	margin: 0;
 }
-:deep(:where(.css-dev-only-do-not-override-185kyl0).ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn) {
+/deep/ .ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
 	text-shadow: none;
 }
-:deep(.ant-tabs-content-holder) {
+/deep/ .ant-tabs-content-holder {
 	width: 1px;
 }
-:deep(:where(.css-dev-only-do-not-override-185kyl0).ant-select-single .ant-select-selector) {
+/deep/ .ant-select-single .ant-select-selector {
 	border-radius: 0;
 	font-size: 20px;
 	width: 180px;
 	text-align: center;
 }
-:deep(:where(.css-dev-only-do-not-override-185kyl0).ant-select .ant-select-arrow) {
+/deep/ .ant-select .ant-select-arrow {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -595,7 +595,7 @@ function closeBox() {
 .ant-input:hover {
 	border-color: #e4e4e4;
 }
-:deep(:where(.css-dev-only-do-not-override-185kyl0).ant-select-single .ant-select-selector:hover) {
+/deep/ .ant-select-single .ant-select-selector:hover {
 	border-color: #e4e4e4;
 }
 
@@ -607,7 +607,8 @@ function closeBox() {
 	font-size: 16px;
 	text-align: left;
 }
-:deep(.textarea-style, .ant-input:focus) {
+/deep/ .textarea-style,
+.ant-input:focus {
 	box-shadow: none;
 	border-color: initial;
 }

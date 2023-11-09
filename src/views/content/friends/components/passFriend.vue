@@ -41,7 +41,7 @@ function handleCancel() {
 					<div class="select-item bb-grey" @click="onlyChat = false">
 						<div class="flex">
 							<div class="icon-box">
-								<img src="/src/assets/image/zone.png" alt="" />
+								<img :src="`./image/zone.png`" alt="" />
 							</div>
 							<span>聊天、朋友圈、微信运动等</span>
 						</div>
@@ -52,7 +52,7 @@ function handleCancel() {
 					<div class="select-item" @click="onlyChat = true">
 						<div class="flex">
 							<div class="icon-box">
-								<img src="/src/assets/image/chat.png" alt="" />
+								<img :src="`./image/chat.png`" alt="" />
 							</div>
 							<span>仅聊天</span>
 						</div>
@@ -68,7 +68,7 @@ function handleCancel() {
 					<div class="select-item bb-grey">
 						<div class="flex">
 							<div class="icon-box">
-								<img src="/src/assets/image/lock.png" alt="" />
+								<img :src="`./image/lock.png`" alt="" />
 							</div>
 							<span>不让他(她)看</span>
 						</div>
@@ -81,7 +81,7 @@ function handleCancel() {
 					<div class="select-item">
 						<div class="flex">
 							<div class="icon-box">
-								<img src="/src/assets/image/hide.png" alt="" />
+								<img :src="`./image/hide.png`" alt="" />
 							</div>
 							<span>不看他(她)</span>
 						</div>
@@ -237,7 +237,7 @@ function handleCancel() {
 		border-radius: 50%;
 	}
 }
-.switch-normal{
+.switch-normal {
 	border: 1px solid #e5e5e5;
 	background-color: #e5e5e5;
 	.swtich-cricle {

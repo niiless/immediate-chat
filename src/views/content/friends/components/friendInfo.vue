@@ -18,13 +18,13 @@ const friendInfo = computed(() => props.info);
 			<div class="intro">
 				<div class="name">
 					<div class="name-text">{{ friendInfo.name }}</div>
-					<img src="/src/assets/image/female.png" alt="" />
+					<img :src="`./image/female.png`" alt="" />
 				</div>
 				<div class="wechat-No">微信号：{{ friendInfo.wechatNo }}</div>
 				<div class="area">{{ friendInfo.area }}</div>
 			</div>
 			<div class="ellipsis">
-				<img src="/src/assets/chat-icon/ellipsis.png" alt="" />
+				<img :src="`./chat-icon/ellipsis.png`" alt="" />
 			</div>
 		</div>
 		<div class="remark-box">
@@ -43,15 +43,15 @@ const friendInfo = computed(() => props.info);
 		</div>
 		<div class="btn-group">
 			<div class="btn">
-				<img src="/src/assets/image/user-record.png" alt="" />
+				<img :src="`./image/user-record.png`" alt="" />
 				<div class="mt-5">发消息</div>
 			</div>
 			<div class="btn">
-				<img src="/src/assets/image/user-phone.png" alt="" />
+				<img :src="`./image/user-phone.png`" alt="" />
 				<div class="mt-5">语音聊天</div>
 			</div>
 			<div class="btn">
-				<img src="/src/assets/image/user-video.png" alt="" />
+				<img :src="`./image/user-video.png`" alt="" />
 				<div class="mt-5">视频聊天</div>
 			</div>
 		</div>

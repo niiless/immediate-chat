@@ -15,55 +15,55 @@ function closeBox() {
 				<div class="title">笔记</div>
 				<div class="edit-btn">
 					<div class="btn-item">
-						<img src="/src/assets/chat-icon/shrink.png" class="reduce-btn" alt="" />
+						<img :src="`./chat-icon/shrink.png`" class="reduce-btn" alt="" />
 					</div>
 					<div class="btn-item">
-						<img src="/src/assets/chat-icon/fullScreen.png" alt="" />
+						<img :src="`./chat-icon/fullScreen.png`" alt="" />
 					</div>
 					<div class="btn-item" @click="closeBox">
-						<img src="/src/assets/chat-icon/close.png" alt="" />
+						<img :src="`./chat-icon/close.png`" alt="" />
 					</div>
 				</div>
 			</div>
 			<div class="edit-group">
 				<div class="left-btn">
 					<div class="item">
-						<img src="/src/assets/collect/file.png" alt="" />
+						<img :src="`./collect/file.png`" alt="" />
 					</div>
 					<div class="item">
-						<img src="/src/assets/collect/bold.png" alt="" />
+						<img :src="`./collect/bold.png`" alt="" />
 					</div>
 					<div class="item">
-						<img src="/src/assets/collect/italic.png" alt="" />
+						<img :src="`./collect/italic.png`" alt="" />
 					</div>
 					<div class="item">
-						<img src="/src/assets/collect/underLine.png" alt="" />
+						<img :src="`./collect/underLine.png`" alt="" />
 					</div>
 					<div class="item">
-						<img src="/src/assets/collect/highlight.png" alt="" />
+						<img :src="`./collect/highlight.png`" alt="" />
 					</div>
 					<div class="item">
-						<img src="/src/assets/collect/g-cricle.png" class="h-16" alt="" />
+						<img :src="`./collect/g-cricle.png`" class="h-16" alt="" />
 					</div>
 					<div class="item">
-						<img src="/src/assets/collect/g-num.png" alt="" />
+						<img :src="`./collect/g-num.png`" alt="" />
 					</div>
 					<div class="item">
-						<img src="/src/assets/collect/line.png" alt="" />
+						<img :src="`./collect/line.png`" alt="" />
 					</div>
 					<div class="item">
-						<img src="/src/assets/collect/todo.png" alt="" />
+						<img :src="`./collect/todo.png`" alt="" />
 					</div>
 				</div>
 				<div class="right-btn">
 					<div class="item">
-						<img src="/src/assets/collect/upload.png" class="upload" alt="添加文件" />
+						<img :src="`./collect/upload.png`" class="upload" alt="添加文件" />
 					</div>
 					<div class="item">
-						<img src="/src/assets/collect/label.png" alt="添加文件" />
+						<img :src="`./collect/label.png`" alt="添加文件" />
 					</div>
 					<div class="item">
-						<img src="/src/assets/collect/export.png" alt="添加文件" />
+						<img :src="`./collect/export.png`" alt="添加文件" />
 					</div>
 				</div>
 			</div>

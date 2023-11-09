@@ -64,22 +64,22 @@ const isShowAll = ref(true);
 const lastChoseMenu = ref();
 // 总好友
 const userList = ref([
-	{ id: 1, avatar: "/src/assets/image/avator1.png", name: "张美丽", label: "不可见", remark: "IT", isCheck: false, auth: "lock" },
-	{ id: 2, avatar: "/src/assets/image/avator1.png", name: "王大帅", label: "不看他", remark: "朋友", isCheck: false, auth: "hide" },
-	{ id: 3, avatar: "/src/assets/image/avator1.png", name: "马小军", label: "仅聊天", remark: "同事", isCheck: false, auth: "chat" },
-	{ id: 4, avatar: "/src/assets/image/avator1.png", name: "伊斯拉姆·马哈切夫", label: "", remark: "", isCheck: false, auth: "lock" },
-	{ id: 5, avatar: "/src/assets/image/avator1.png", name: "查尔斯·奥利维拉", label: "", remark: "", isCheck: false, auth: "" },
-	{ id: 6, avatar: "/src/assets/image/avator1.png", name: "欧阳娜娜", label: "", remark: "隔壁小明", isCheck: false, auth: "lock" },
-	{ id: 7, avatar: "/src/assets/image/avator1.png", name: "李凯", label: "不可见", remark: "", isCheck: false, auth: "lock" },
-	{ id: 8, avatar: "/src/assets/image/avator1.png", name: "Nasty", label: "不可见", remark: "", isCheck: false, auth: "" },
-	{ id: 9, avatar: "/src/assets/image/avator1.png", name: "John Deep", label: "不可见", remark: "隔壁小明", isCheck: false, auth: "" },
-	{ id: 10, avatar: "/src/assets/image/avator1.png", name: "islam Mahachevo", label: "不可见", remark: "隔壁小明", isCheck: false, auth: "lock" },
-	{ id: 11, avatar: "/src/assets/image/avator1.png", name: "巴拉素", label: "", remark: "隔壁小明", isCheck: false, auth: "lock" },
-	{ id: 12, avatar: "/src/assets/image/avator1.png", name: "小明", label: "不可见", remark: "隔壁小明", isCheck: false, auth: "hide" },
-	{ id: 13, avatar: "/src/assets/image/avator1.png", name: "小红", label: "不可见", remark: "", isCheck: false, auth: "lock" },
-	{ id: 14, avatar: "/src/assets/image/avator1.png", name: "小绿", label: "", remark: "隔壁小明", isCheck: false, auth: "lock" },
-	{ id: 15, avatar: "/src/assets/image/avator1.png", name: "小黑", label: "不可见", remark: "隔壁小明", isCheck: false, auth: "lock" },
-	{ id: 16, avatar: "/src/assets/image/avator1.png", name: "小白", label: "不可见", remark: "", isCheck: false, auth: "hide" },
+	{ id: 1, avatar: "./image/avator1.png", name: "张美丽", label: "不可见", remark: "IT", isCheck: false, auth: "lock" },
+	{ id: 2, avatar: "./image/avator1.png", name: "王大帅", label: "不看他", remark: "朋友", isCheck: false, auth: "hide" },
+	{ id: 3, avatar: "./image/avator1.png", name: "马小军", label: "仅聊天", remark: "同事", isCheck: false, auth: "chat" },
+	{ id: 4, avatar: "./image/avator1.png", name: "伊斯拉姆·马哈切夫", label: "", remark: "", isCheck: false, auth: "lock" },
+	{ id: 5, avatar: "./image/avator1.png", name: "查尔斯·奥利维拉", label: "", remark: "", isCheck: false, auth: "" },
+	{ id: 6, avatar: "./image/avator1.png", name: "欧阳娜娜", label: "", remark: "隔壁小明", isCheck: false, auth: "lock" },
+	{ id: 7, avatar: "./image/avator1.png", name: "李凯", label: "不可见", remark: "", isCheck: false, auth: "lock" },
+	{ id: 8, avatar: "./image/avator1.png", name: "Nasty", label: "不可见", remark: "", isCheck: false, auth: "" },
+	{ id: 9, avatar: "./image/avator1.png", name: "John Deep", label: "不可见", remark: "隔壁小明", isCheck: false, auth: "" },
+	{ id: 10, avatar: "./image/avator1.png", name: "islam Mahachevo", label: "不可见", remark: "隔壁小明", isCheck: false, auth: "lock" },
+	{ id: 11, avatar: "./image/avator1.png", name: "巴拉素", label: "", remark: "隔壁小明", isCheck: false, auth: "lock" },
+	{ id: 12, avatar: "./image/avator1.png", name: "小明", label: "不可见", remark: "隔壁小明", isCheck: false, auth: "hide" },
+	{ id: 13, avatar: "./image/avator1.png", name: "小红", label: "不可见", remark: "", isCheck: false, auth: "lock" },
+	{ id: 14, avatar: "./image/avator1.png", name: "小绿", label: "", remark: "隔壁小明", isCheck: false, auth: "lock" },
+	{ id: 15, avatar: "./image/avator1.png", name: "小黑", label: "不可见", remark: "隔壁小明", isCheck: false, auth: "lock" },
+	{ id: 16, avatar: "./image/avator1.png", name: "小白", label: "不可见", remark: "", isCheck: false, auth: "hide" },
 ]);
 
 const filterList = ref([]);
@@ -160,13 +160,13 @@ function closeContactManage() {
 					</template>
 					<a-menu-item v-for="childItem in item.children" :key="childItem.key" @click="handleClickMenuItem(childItem)">
 						<template v-slot:icon v-if="childItem.key == 1">
-							<img src="/src/assets/image/chat.png" class="img-icon" alt="" />
+							<img :src="`./image/chat.png`" class="img-icon" alt="" />
 						</template>
 						<template v-slot:icon v-if="childItem.key == 2">
-							<img src="/src/assets/image/lock.png" class="img-icon" alt="" />
+							<img :src="`./image/lock.png`" class="img-icon" alt="" />
 						</template>
 						<template v-slot:icon v-if="childItem.key == 3">
-							<img src="/src/assets/image/hide.png" class="img-icon" alt="" />
+							<img :src="`./image/hide.png`" class="img-icon" alt="" />
 						</template>
 						{{ childItem.label }}<span class="num-style"> ({{ getAuthMember(childItem.key) }})</span>
 					</a-menu-item>
@@ -182,13 +182,13 @@ function closeContactManage() {
 				</div>
 				<div class="edit-btn">
 					<div class="btn-item">
-						<img src="/src/assets/chat-icon/shrink.png" class="reduce-btn" alt="" />
+						<img :src="`./chat-icon/shrink.png`" class="reduce-btn" alt="" />
 					</div>
 					<div class="btn-item">
-						<img src="/src/assets/chat-icon/fullScreen.png" alt="" />
+						<img :src="`./chat-icon/fullScreen.png`" alt="" />
 					</div>
 					<div class="btn-item" @click="closeContactManage">
-						<img src="/src/assets/chat-icon/close.png" alt="" />
+						<img :src="`./chat-icon/close.png`" alt="" />
 					</div>
 				</div>
 			</div>
@@ -214,9 +214,9 @@ function closeContactManage() {
 						<div class="userRemark">{{ item.remark }}</div>
 						<div class="userLabel">{{ item.label }}</div>
 						<div class="userAuth">
-							<img v-if="item.auth == 'hide'" src="/src/assets/image/hide.png" alt="" />
-							<img v-if="item.auth == 'lock'" src="/src/assets/image/lock.png" alt="" />
-							<img v-if="item.auth == 'chat'" src="/src/assets/image/chat.png" alt="" />
+							<img v-if="item.auth == 'hide'" :src="`./image/hide.png`" alt="" />
+							<img v-if="item.auth == 'lock'" :src="`./image/lock.png`" alt="" />
+							<img v-if="item.auth == 'chat'" :src="`./image/chat.png`" alt="" />
 						</div>
 					</div>
 				</div>
@@ -227,17 +227,17 @@ function closeContactManage() {
 				</div>
 				<div class="btn-group">
 					<div class="btns">
-						<img src="/src/assets/image/auth-lock.png" alt="" />
+						<img :src="`./image/auth-lock.png`" alt="" />
 						<span>修改权限</span>
 					</div>
 					<div class="btns">
 						<div class="circle-radius">
-							<img src="/src/assets/image/auth-label.png" alt="" />
+							<img :src="`./image/auth-label.png`" alt="" />
 						</div>
 						<span>添加标签</span>
 					</div>
 					<div class="btns">
-						<img src="/src/assets/image/auth-delete.png" alt="" />
+						<img :src="`./image/auth-delete.png`" alt="" />
 						<span>删除</span>
 					</div>
 				</div>
@@ -525,7 +525,7 @@ function closeContactManage() {
 	width: 16px !important;
 	height: 2px !important;
 }
-:deep(.ant-input) {
+/deep/ .ant-input {
 	&::placeholder {
 		color: #696969;
 	}

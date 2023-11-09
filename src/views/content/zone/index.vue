@@ -5,42 +5,28 @@ const zoneList = ref([
 	{
 		id: 1,
 		name: "小明",
-		avatar: "/src/assets/image/avator1.png",
+		avatar: "./image/avator1.png",
 		content: '<span style="color:#576B95">#Meerkathhujilebu</span><br><div>昨日萌新&进阶 两片场</div>',
-		imgList: [
-			"/src/assets/image/avator1.png",
-			"/src/assets/image/avator2.png",
-			"/src/assets/image/avator3.png",
-			"/src/assets/image/avator4.png",
-			"/src/assets/image/avator5.png",
-			"/src/assets/image/avator6.png",
-		],
+		imgList: ["./image/avator1.png", "./image/avator2.png", "./image/avator3.png", "./image/avator4.png", "./image/avator5.png", "./image/avator6.png"],
 	},
 	{
 		id: 2,
 		name: "小明",
-		avatar: "/src/assets/image/avator2.png",
+		avatar: "./image/avator2.png",
 		content: "<p>今天天气真好！</p>",
-		imgList: [
-			"/src/assets/image/avator1.png",
-			"/src/assets/image/avator2.png",
-			"/src/assets/image/avator3.png",
-			"/src/assets/image/avator4.png",
-			"/src/assets/image/avator5.png",
-			"/src/assets/image/avator6.png",
-		],
+		imgList: ["./image/avator1.png", "./image/avator2.png", "./image/avator3.png", "./image/avator4.png", "./image/avator5.png", "./image/avator6.png"],
 	},
 ]);
 const noticeList = ref([
 	{
 		id: 1,
 		name: "立",
-		avatar: "/src/assets/image/avator2.png",
+		avatar: "./image/avator2.png",
 		content: "不错",
 		date: "刚刚",
-		zoneImg: "/src/assets/image/avator1.png",
+		zoneImg: "./image/avator1.png",
 	},
-	{ id: 2, name: "Blastic Kavanovski Antipofuss", avatar: "/src/assets/image/avator4.png", content: "好看好看", date: "10:36", zoneImg: "/src/assets/image/avator1.png" },
+	{ id: 2, name: "Blastic Kavanovski Antipofuss", avatar: "./image/avator4.png", content: "好看好看", date: "10:36", zoneImg: "./image/avator1.png" },
 ]);
 
 function handleCloseFriendZone() {
@@ -80,30 +66,30 @@ function handleCloseFriendZone() {
 					</template>
 					<template #title> </template>
 					<div class="btn">
-						<img src="/src/assets/chat-icon/notice.png" alt="" />
+						<img :src="`./chat-icon/notice.png`" alt="" />
 					</div>
 				</a-popover>
 				<div class="btn">
-					<img src="/src/assets/chat-icon/reload.png" alt="" />
+					<img :src="`./chat-icon/reload.png`" alt="" />
 				</div>
 			</div>
 			<div class="right-btn">
 				<div class="btn">
-					<img src="/src/assets/chat-icon/fixed-zone.png" class="h-22" alt="" />
+					<img :src="`./chat-icon/fixed-zone.png`" class="h-22" alt="" />
 				</div>
 				<div class="btn">
-					<img src="/src/assets/chat-icon/shrink-zone.png" class="w-18" alt="" />
+					<img :src="`./chat-icon/shrink-zone.png`" class="w-18" alt="" />
 				</div>
 				<div class="btn hover-red" @click="handleCloseFriendZone">
-					<img src="/src/assets/chat-icon/close-zone.png" class="h-13" alt="" />
+					<img :src="`./chat-icon/close-zone.png`" class="h-13" alt="" />
 				</div>
 			</div>
 		</div>
 		<div class="user-info">
-			<img src="/src/assets/image/myAvatar.png" class="bg-zone" alt="" />
+			<img :src="`./image/myAvatar.png`" class="bg-zone" alt="" />
 			<div class="info">
 				<div class="name">小刘爱设计</div>
-				<img src="/src/assets/image/myAvatar.png" alt="" />
+				<img :src="`./image/myAvatar.png`" alt="" />
 			</div>
 		</div>
 		<div class="zone-record">
@@ -128,12 +114,12 @@ function handleCloseFriendZone() {
 							>
 								<template #content>
 									<div class="zone-btn">
-										<div class="like"><img src="/src/assets/image/like.png" alt="" />喜欢</div>
-										<div class="comment"><img src="/src/assets/image/comment.png" alt="" />评论</div>
+										<div class="like"><img :src="`./image/like.png`" alt="" />喜欢</div>
+										<div class="comment"><img :src="`./image/comment.png`" alt="" />评论</div>
 									</div>
 								</template>
 								<div class="btn">
-									<img src="/src/assets/chat-icon/split.png" alt="" />
+									<img :src="`./chat-icon/split.png`" alt="" />
 								</div>
 							</a-popover>
 						</div>
@@ -289,11 +275,11 @@ function handleCloseFriendZone() {
 	}
 }
 
-:deep(.edit-btn :where(.css-dev-only-do-not-override-185kyl0).ant-popover .ant-popover-inner) {
+/deep/ .edit-btn .ant-popover .ant-popover-inner {
 	background: #8f8f8f;
 	padding: 0;
 }
-:deep(.edit-btn :where(.css-dev-only-do-not-override-185kyl0).ant-popover .ant-popover-arrow:before) {
+/deep/ .edit-btn .ant-popover .ant-popover-arrow:before {
 	background-color: #8f8f8f;
 }
 .grid-container {

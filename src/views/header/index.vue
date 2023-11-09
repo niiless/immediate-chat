@@ -31,7 +31,7 @@ function handleBack() {
 			</a-input>
 			<div class="add-btn flex-center finger" v-if="props.activeMenu != 3">
 				<PlusOutlined class="s-22" v-show="props.activeMenu == 1" />
-				<img src="/src/assets/image/friend-add.png" alt="" v-show="props.activeMenu == 2" />
+				<img :src="`./image/friend-add.png`" alt="" v-show="props.activeMenu == 2" />
 			</div>
 		</div>
 		<div class="content">
@@ -40,26 +40,26 @@ function handleBack() {
 					{{ props.title }}
 				</div>
 				<div class="back-btn finger" v-show="showBack">
-					<img src="/src/assets/image/back.png" alt="" @click="handleBack" />
+					<img :src="`./image/back.png`" alt="" @click="handleBack" />
 				</div>
 				<div class="edit-btn">
 					<div class="top-land flex-center">
 						<div class="btn-item">
-							<img class="w-20" src="/src/assets/chat-icon/fixed.png" alt="" />
+							<img class="w-20" :src="`./chat-icon/fixed.png`" alt="" />
 						</div>
 						<div class="btn-item">
-							<img src="/src/assets/chat-icon/shrink.png" alt="" />
+							<img :src="`./chat-icon/shrink.png`" alt="" />
 						</div>
 						<div class="btn-item">
-							<img src="/src/assets/chat-icon/fullScreen.png" alt="" />
+							<img :src="`./chat-icon/fullScreen.png`" alt="" />
 						</div>
 						<div class="btn-item">
-							<img src="/src/assets/chat-icon/close.png" alt="" />
+							<img :src="`./chat-icon/close.png`" alt="" />
 						</div>
 					</div>
 					<div class="bottom-land">
 						<div class="btn-item">
-							<img src="/src/assets/chat-icon/ellipsis.png" alt="" />
+							<img :src="`./chat-icon/ellipsis.png`" alt="" />
 						</div>
 					</div>
 				</div>
@@ -167,12 +167,14 @@ function handleBack() {
 		border-color: #d9d9d9;
 		box-shadow: none;
 	}
-	// :deep(.ant-input-affix-wrapper:hover) {
+	// /deep/ .ant-input-affix-wrapper:hover) {
 	// 	border-color: #d9d9d9;
 	// 	box-shadow: none;
 	// }
 }
-:deep(.ant-input, .ant-input:focus, .ant-input:hover) {
+/deep/ .ant-input,
+.ant-input:focus,
+.ant-input:hover {
 	box-shadow: none;
 	border-color: none;
 	background-color: transparent;

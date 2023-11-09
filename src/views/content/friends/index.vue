@@ -26,7 +26,7 @@ const directory = ref([
 			{
 				id: "001",
 				name: "A",
-				avatar: "/src/assets/image/avator1.png",
+				avatar: "./image/avator1.png",
 				wechatNo: "123",
 				area: "德国 匹兹堡",
 				styleRemark: "12312",
@@ -34,7 +34,7 @@ const directory = ref([
 			{
 				id: "002",
 				name: "ANSWE",
-				avatar: "/src/assets/image/avator2.png",
+				avatar: "./image/avator2.png",
 				wechatNo: "456",
 				area: "中国大陆",
 				styleRemark: "3242341",
@@ -42,7 +42,7 @@ const directory = ref([
 			{
 				id: "003",
 				name: "爱茶",
-				avatar: "/src/assets/image/avator3.png",
+				avatar: "./image/avator3.png",
 				wechatNo: "789",
 				area: "美国 底特律",
 				styleRemark: "自由美利坚，枪战每一天",
@@ -50,7 +50,7 @@ const directory = ref([
 			{
 				id: "004",
 				name: "爱可以包容一切爱可以包容一切爱可以包容一切",
-				avatar: "/src/assets/image/avator4.png",
+				avatar: "./image/avator4.png",
 				wechatNo: "asd231",
 				area: "中国大陆",
 				styleRemark: "love",
@@ -64,7 +64,7 @@ const directory = ref([
 			{
 				id: "005",
 				name: "百度网站",
-				avatar: "/src/assets/image/avator4.png",
+				avatar: "./image/avator4.png",
 				wechatNo: "dfssdf12",
 				area: "中国大陆",
 				styleRemark: "百度一下，你就知道",
@@ -72,7 +72,7 @@ const directory = ref([
 			{
 				id: "006",
 				name: "Boom",
-				avatar: "/src/assets/image/avator5.png",
+				avatar: "./image/avator5.png",
 				wechatNo: "546546",
 				area: "中国大陆",
 				styleRemark: "Boom ！",
@@ -86,14 +86,14 @@ const directory = ref([
 			{
 				id: "007",
 				name: "Cardi B",
-				avatar: "/src/assets/image/avator4.png",
+				avatar: "./image/avator4.png",
 				wechatNo: "bvnfn3",
 				area: "中国大陆",
 			},
 			{
 				id: "008",
 				name: "蔡文姬",
-				avatar: "/src/assets/image/avator5.png",
+				avatar: "./image/avator5.png",
 				wechatNo: "bvnfgn123",
 				area: "中国大陆",
 			},
@@ -102,27 +102,27 @@ const directory = ref([
 ]);
 // 新的朋友列表
 const newFriendList = ref([
-	{ id: 1, name: "小红", intro: "你好，我是小红", avatar: "/src/assets/image/avator1.png", isFriend: false, sex: 1, area: "德国 奥格斯堡" },
-	{ id: 2, name: "小明", intro: "好久不见，老同学！", avatar: "/src/assets/image/avator2.png", isFriend: true },
-	{ id: 3, name: "小兰", intro: "你好，我是小兰", avatar: "/src/assets/image/avator3.png", isFriend: true },
-	{ id: 4, name: "新一", intro: "你好，我是来自名侦探柯南的工藤新一", avatar: "/src/assets/image/avator4.png", isFriend: true },
+	{ id: 1, name: "小红", intro: "你好，我是小红", avatar: "./image/avator1.png", isFriend: false, sex: 1, area: "德国 奥格斯堡" },
+	{ id: 2, name: "小明", intro: "好久不见，老同学！", avatar: "./image/avator2.png", isFriend: true },
+	{ id: 3, name: "小兰", intro: "你好，我是小兰", avatar: "./image/avator3.png", isFriend: true },
+	{ id: 4, name: "新一", intro: "你好，我是来自名侦探柯南的工藤新一", avatar: "./image/avator4.png", isFriend: true },
 ]);
 // 群聊列表
 const groupChatList = ref([
-	{ id: 1, name: "群聊1", avatar: "/src/assets/image/avator1.png" },
-	{ id: 2, name: "群聊2", avatar: "/src/assets/image/avator2.png" },
-	{ id: 3, name: "群聊3", avatar: "/src/assets/image/avator3.png" },
-	{ id: 4, name: "群聊4", avatar: "/src/assets/image/avator4.png" },
-	{ id: 5, name: "群聊5", avatar: "/src/assets/image/avator5.png" },
-	{ id: 6, name: "群聊6", avatar: "/src/assets/image/avator6.png" },
-	{ id: 7, name: "群聊7", avatar: "/src/assets/image/avator7.png" },
-	{ id: 8, name: "群聊8", avatar: "/src/assets/image/avator8.png" },
-	{ id: 9, name: "群聊9", avatar: "/src/assets/image/avator1.png" },
-	{ id: 10, name: "群聊10", avatar: "/src/assets/image/avator2.png" },
-	{ id: 11, name: "群聊11", avatar: "/src/assets/image/avator3.png" },
-	{ id: 12, name: "群聊12", avatar: "/src/assets/image/avator4.png" },
-	{ id: 13, name: "群聊13", avatar: "/src/assets/image/avator5.png" },
-	{ id: 14, name: "群聊14", avatar: "/src/assets/image/avator6.png" },
+	{ id: 1, name: "群聊1", avatar: "./image/avator1.png" },
+	{ id: 2, name: "群聊2", avatar: "./image/avator2.png" },
+	{ id: 3, name: "群聊3", avatar: "./image/avator3.png" },
+	{ id: 4, name: "群聊4", avatar: "./image/avator4.png" },
+	{ id: 5, name: "群聊5", avatar: "./image/avator5.png" },
+	{ id: 6, name: "群聊6", avatar: "./image/avator6.png" },
+	{ id: 7, name: "群聊7", avatar: "./image/avator7.png" },
+	{ id: 8, name: "群聊8", avatar: "./image/avator8.png" },
+	{ id: 9, name: "群聊9", avatar: "./image/avator1.png" },
+	{ id: 10, name: "群聊10", avatar: "./image/avator2.png" },
+	{ id: 11, name: "群聊11", avatar: "./image/avator3.png" },
+	{ id: 12, name: "群聊12", avatar: "./image/avator4.png" },
+	{ id: 13, name: "群聊13", avatar: "./image/avator5.png" },
+	{ id: 14, name: "群聊14", avatar: "./image/avator6.png" },
 ]);
 // 点击新好友，接受
 function showFriendInfo() {
@@ -160,7 +160,7 @@ function closeContactManage() {
 			<div class="left-box">
 				<div class="content">
 					<div class="manage-box flex-center" @click="showContactManage">
-						<img src="/src/assets/image/userIcon.png" alt="" />
+						<img :src="`./image/userIcon.png`" alt="" />
 						通讯录管理
 					</div>
 					<div class="friends-item">
@@ -175,7 +175,7 @@ function closeContactManage() {
 								}"
 								:count="1"
 							>
-								<img src="/src/assets/image/newFriend.png" alt="" />
+								<img :src="`./image/newFriend.png`" alt="" />
 							</a-badge>
 							<span>新的朋友</span>
 						</div>
@@ -183,7 +183,7 @@ function closeContactManage() {
 					<div class="friends-item">
 						<div class="item-title">群聊</div>
 						<div class="item-content" :class="activeItem == 'group' ? 'active-style' : ''" @click="handleChoseItem({ id: 'group' })">
-							<img src="/src/assets/image/group.png" alt="" />
+							<img :src="`./image/group.png`" alt="" />
 							<span>群聊</span>
 						</div>
 					</div>
@@ -222,11 +222,11 @@ function closeContactManage() {
 					<div v-if="showAddInfo && !showPassBox">
 						<div class="check-friend">
 							<div class="add-info">
-								<img src="/src/assets/image/avator1.png" alt="" />
+								<img :src="`./image/avator1.png`" alt="" />
 								<div class="info">
 									<div class="name-box">
 										<div class="name">立</div>
-										<img src="/src/assets/image/female.png" alt="" />
+										<img :src="`./image/female.png`" alt="" />
 									</div>
 									<div class="area">地区：德国 奥格斯堡</div>
 								</div>
